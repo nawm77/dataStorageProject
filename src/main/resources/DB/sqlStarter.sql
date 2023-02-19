@@ -26,10 +26,10 @@ CREATE TABLE "Customer" (
 
 
 CREATE TABLE "Order" (
-                         "id" serial NOT NULL,
-                         "userId" serial NOT NULL,
-                         "carId" serial NOT NULL,
-                         "totalPrice" serial NOT NULL,
+                         "id" bigint NOT NULL,
+                         "userId" bigint NOT NULL,
+                         "carId" bigint NOT NULL,
+                         "totalPrice" bigint NOT NULL,
                          CONSTRAINT "Order_pk" PRIMARY KEY ("id")
 ) WITH (
       OIDS=FALSE
@@ -38,11 +38,11 @@ CREATE TABLE "Order" (
 
 
 CREATE TABLE "Employees" (
-                             "id" serial NOT NULL,
-                             "name" serial(255) NOT NULL,
-                             "surname" serial(255) NOT NULL,
-                             "positionId" serial(255) NOT NULL,
-                             "email" serial(255) NOT NULL,
+                             "id" bigint NOT NULL,
+                             "name" varchar(255) NOT NULL,
+                             "surname" varchar(255) NOT NULL,
+                             "positionId" bigint NOT NULL,
+                             "email" varchar(255) NOT NULL,
                              CONSTRAINT "Employees_pk" PRIMARY KEY ("id")
 ) WITH (
       OIDS=FALSE
@@ -51,9 +51,9 @@ CREATE TABLE "Employees" (
 
 
 CREATE TABLE "Positions" (
-                             "id" serial NOT NULL,
-                             "salary" serial NOT NULL,
-                             "positionName" serial(255) NOT NULL,
+                             "id" bigint NOT NULL,
+                             "salary" bigint NOT NULL,
+                             "positionName" varchar(255) NOT NULL,
                              CONSTRAINT "Positions_pk" PRIMARY KEY ("id")
 ) WITH (
       OIDS=FALSE
@@ -62,10 +62,10 @@ CREATE TABLE "Positions" (
 
 
 CREATE TABLE "Parts" (
-                         "id" serial NOT NULL,
-                         "name" serial(255) NOT NULL,
-                         "amount" serial(255) NOT NULL,
-                         "price" serial(255) NOT NULL,
+                         "id" bigint NOT NULL,
+                         "name" varchar(255) NOT NULL,
+                         "amount" bigint NOT NULL,
+                         "price" bigint NOT NULL,
                          CONSTRAINT "Parts_pk" PRIMARY KEY ("id")
 ) WITH (
       OIDS=FALSE
@@ -74,11 +74,11 @@ CREATE TABLE "Parts" (
 
 
 CREATE TABLE "Invoices" (
-                            "id" serial NOT NULL,
-                            "customerId" serial NOT NULL,
-                            "carId" serial NOT NULL,
-                            "parts" serial NOT NULL,
-                            "engineerId" serial NOT NULL,
+                            "id" bigint NOT NULL,
+                            "customerId" bigint NOT NULL,
+                            "carId" bigint NOT NULL,
+                            "parts" json NOT NULL,
+                            "engineerId" bigint NOT NULL,
                             CONSTRAINT "Invoices_pk" PRIMARY KEY ("id")
 ) WITH (
       OIDS=FALSE
@@ -87,11 +87,11 @@ CREATE TABLE "Invoices" (
 
 
 CREATE TABLE "testDriveList" (
-                                 "id" serial NOT NULL,
-                                 "customerId" serial NOT NULL,
-                                 "carId" serial NOT NULL,
-                                 "managerId" serial NOT NULL,
-                                 "time" serial NOT NULL,
+                                 "id" bigint NOT NULL,
+                                 "customerId" bigint NOT NULL,
+                                 "carId" bigint NOT NULL,
+                                 "managerId" bigint NOT NULL,
+                                 "time" time NOT NULL,
                                  CONSTRAINT "testDriveList_pk" PRIMARY KEY ("id")
 ) WITH (
       OIDS=FALSE
