@@ -2,6 +2,7 @@ CREATE TABLE "Car" (
                        "Id" bigint NOT NULL,
                        "make" varchar(255) NOT NULL,
                        "model" varchar(255) NOT NULL,
+                       "fuel" varchar(255) NOT NULL,
                        "horsePower" bigint NOT NULL,
                        "price" bigint NOT NULL,
                        "isAvailable" boolean NOT NULL,
