@@ -1,10 +1,11 @@
 version: "3"
 services:
   postgres:
+    container_name: postgresData
     image: postgres
     environment:
       POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: 123
+      POSTGRES_PASSWORD: root
       PGDATA: /data/postgres
     volumes:
       - postgres:/data/postgres
@@ -12,18 +13,16 @@ services:
       - "5432:5432"
     networks:
       - postgres
-    restart: unless-stopped
   pgadmin:
-    container_name: pgadmin
+    container_name: pgadminData
     image: dpage/pgadmin4
     environment:
-      PGADMIN_DEFAULT_EMAIL: noemail@noemail.com
+      PGADMIN_DEFAULT_EMAIL: email@gmail.com
       PGADMIN_DEFAULT_PASSWORD: root
     ports:
       - "5050:80"
     networks:
       - postgres
-    restart: unless-stopped
 networks:
   postgres:
     driver: bridge
