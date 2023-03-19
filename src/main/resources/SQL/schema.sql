@@ -124,7 +124,7 @@ CREATE TABLE "Testdrive_list" (
                                          "time" TIME NOT NULL,
                                          "customerId" bigint NOT NULL,
                                          "employeeId" bigint NOT NULL,
-                                         "carVinNumber" bigint NOT NULL,
+                                         "carVinNumber" varchar(255) NOT NULL,
                                          CONSTRAINT "Testdrive_list_pk" PRIMARY KEY ("testDriveNumber")
 ) WITH (
       OIDS=FALSE
