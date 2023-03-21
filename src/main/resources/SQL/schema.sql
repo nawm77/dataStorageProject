@@ -65,7 +65,7 @@ CREATE TABLE "Order" (
                                 "orderId" bigint NOT NULL,
                                 "customerId" bigint NOT NULL,
                                 "carVinNumber" varchar(255) NOT NULL,
-                                "orderStatus" varchar(255) NOT NULL,
+                                "orderStatusId" bigint NOT NULL,
                                 CONSTRAINT "Order_pk" PRIMARY KEY ("orderId")
 ) WITH (
       OIDS=FALSE
@@ -130,6 +130,13 @@ CREATE TABLE "Testdrive_list" (
       OIDS=FALSE
     );
 
+CREATE TABLE "Order_status" (
+                         "statusId" bigint NOT NULL,
+                         "description" varchar(255) NOT NULL,
+                         CONSTRAINT "Order_status_pk" PRIMARY KEY ("statusId")
+) WITH (
+      OIDS=FALSE
+    );
 
 
 
@@ -144,6 +151,7 @@ ALTER TABLE "Available_cars" ADD CONSTRAINT "Available_cars_fk0" FOREIGN KEY ("c
 
 ALTER TABLE "Order" ADD CONSTRAINT "Order_fk0" FOREIGN KEY ("customerId") REFERENCES "Customer"("customerId");
 ALTER TABLE "Order" ADD CONSTRAINT "Order_fk1" FOREIGN KEY ("carVinNumber") REFERENCES "Available_cars"("VinNumber");
+ALTER TABLE "Order" ADD CONSTRAINT "Order_fk2" FOREIGN KEY ("orderStatusId") REFERENCES "Order_status"("statusId");
 
 ALTER TABLE "Customer" ADD CONSTRAINT "Customer_fk0" FOREIGN KEY ("customerId") REFERENCES "Human"("humanId");
 

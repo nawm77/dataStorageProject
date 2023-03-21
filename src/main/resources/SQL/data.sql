@@ -44,11 +44,11 @@ INSERT INTO "Car_list" ("carId", make, model, "horsePower", fuel, color) VALUES 
 insert into "Available_cars" ("VinNumber", "carId", price, status) values ('WBA5E51030G205660', 1003, 11000000, 'available');
 insert into "Available_cars" ("VinNumber", "carId", price, status) values ('X4X5E123GH6673013', 1001, 3000000, 'available');
 insert into "Available_cars" ("VinNumber", "carId", price, status) values ('WBANX707THAY66194', 1002, 5000000, 'available');
-insert into "Available_cars" ("VinNumber", "carId", price, status) values ('E789AJCB48149HH57', 1004, 7000000, 'available');
+insert into "Available_cars" ("VinNumber", "carId", price, status) values ('E789AJCB48149HH57', 1004, 7000000, 'unavailable');
 insert into "Available_cars" ("VinNumber", "carId", price, status) values ('TGK7798ASD1940101', 1005, 9800000, 'available');
 insert into "Available_cars" ("VinNumber", "carId", price, status) values ('VINNUM18237418742', 1006, 4000000, 'available');
 insert into "Available_cars" ("VinNumber", "carId", price, status) values ('VINTEST5567162438', 1007, 1900000, 'available');
-insert into "Available_cars" ("VinNumber", "carId", price, status) values ('VINREL10923KHA198', 1008, 1800000, 'available');
+insert into "Available_cars" ("VinNumber", "carId", price, status) values ('VINREL10923KHA198', 1008, 1800000, 'unavailable');
 /*Заполнение таблицы с запчастями*/
 INSERT INTO "Parts" (article, "avaliableCount", name, price) VALUES (123456, 50, 'Spark Plug', 5);
 INSERT INTO "Parts" (article, "avaliableCount", name, price) VALUES (789012, 25, 'Oil Filter', 8);
@@ -68,11 +68,16 @@ INSERT INTO "Order_parts" ("orderNumber", "partArticle", "invoiceNumber", amount
 INSERT INTO "Order_parts" ("orderNumber", "partArticle", "invoiceNumber", amount) VALUES (1004, 901234, 5003, 3);
 INSERT INTO "Order_parts" ("orderNumber", "partArticle", "invoiceNumber", amount) VALUES (1005, 567890, 5004, 2);
 
-INSERT INTO "Order" ("orderId", "customerId", "carVinNumber", "orderStatus") VALUES (1, 1001, 'WBA5E51030G205660', 'avaliable');
-INSERT INTO "Order" ("orderId", "customerId", "carVinNumber", "orderStatus") VALUES (2, 1001, 'X4X5E123GH6673013', 'avaliable');
-INSERT INTO "Order" ("orderId", "customerId", "carVinNumber", "orderStatus") VALUES (3, 1001, 'WBANX707THAY66194', 'avaliable');
-INSERT INTO "Order" ("orderId", "customerId", "carVinNumber", "orderStatus") VALUES (4, 1002, 'E789AJCB48149HH57', 'avaliable');
-INSERT INTO "Order" ("orderId", "customerId", "carVinNumber", "orderStatus") VALUES (5, 1003, 'TGK7798ASD1940101', 'avaliable');
+INSERT INTO "Order_status" ("statusId", description) VALUES (0, 'Order accepted');
+INSERT INTO "Order_status" ("statusId", description) VALUES (1, 'In production');
+INSERT INTO "Order_status" ("statusId", description) VALUES (2, 'In delivery');
+INSERT INTO "Order_status" ("statusId", description) VALUES (3, 'Delivered');
+
+INSERT INTO "Order" ("orderId", "customerId", "carVinNumber", "orderStatusId") VALUES (1, 1001, 'WBA5E51030G205660', 0);
+INSERT INTO "Order" ("orderId", "customerId", "carVinNumber", "orderStatusId") VALUES (2, 1001, 'X4X5E123GH6673013', 1);
+INSERT INTO "Order" ("orderId", "customerId", "carVinNumber", "orderStatusId") VALUES (3, 1001, 'WBANX707THAY66194', 2);
+INSERT INTO "Order" ("orderId", "customerId", "carVinNumber", "orderStatusId") VALUES (4, 1002, 'E789AJCB48149HH57', 3);
+INSERT INTO "Order" ("orderId", "customerId", "carVinNumber", "orderStatusId") VALUES (5, 1003, 'TGK7798ASD1940101', 3);
 
 INSERT INTO "Testdrive_list" ("testDriveNumber", time, "customerId", "employeeId", "carVinNumber") VALUES (1, '14:00:00', 1001, 2001, 'VINNUM18237418742');
 INSERT INTO "Testdrive_list" ("testDriveNumber", time, "customerId", "employeeId", "carVinNumber") VALUES (2, '15:30:00', 1002, 2002, 'VINTEST5567162438');
