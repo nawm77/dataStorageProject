@@ -28,3 +28,19 @@ SELECT Cl.make, Cl.model, Cl.color FROM "Available_cars" Ac
         join "Car_list" Cl on Cl."carId" = Ac."carId"
         join "Testdrive_list" Tl on Ac."VinNumber" = Tl."carVinNumber"
         where Ac.status='available';
+
+/*Удаление записей, где статус Inactive*/
+DELETE FROM "Human"
+WHERE status = 'Inactive';
+/*Изменение зарплаты механику*/
+UPDATE "Position"
+SET salary = 40000
+WHERE "positionName" = 'Механик';
+
+UPDATE "Invoices"
+SET "carVinNumber" = 'WBA5E51321F174666'
+WHERE "employeeId" = 3 AND "customerId"=12;
+
+UPDATE "Order_parts"
+SET amount = 15
+WHERE "partArticle"=1 and "invoiceNumber" = 4

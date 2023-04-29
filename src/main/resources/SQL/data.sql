@@ -24,7 +24,7 @@ insert into "Customer" ("customerId", "isBlocked") VALUES (1001, false);
 insert into "Customer" ("customerId", "isBlocked") VALUES (1002, false);
 insert into "Customer" ("customerId", "isBlocked") VALUES (1003, false);
 insert into "Customer" ("customerId", "isBlocked") VALUES (1004, false);
-insert into "Customer" ("customerId", "isBlocked") VALUES (1005, false);
+insert into "Customer" ("customerId", "isBlocked") VALUES (1005, true);
 
 insert into "Employee" ("employeeId", "positionId") VALUES (2001, 1);
 insert into "Employee" ("employeeId", "positionId") VALUES (2002, 2);

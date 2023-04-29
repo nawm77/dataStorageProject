@@ -6,6 +6,7 @@ services:
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: root
+      POSTGRES_DB: dataStorageProject
       PGDATA: /data/postgres
     volumes:
       - postgres:/data/postgres
