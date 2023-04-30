@@ -1,20 +1,25 @@
 package com.example.datastorageproject.Controller;
 
-import com.example.datastorageproject.Repository.EmployeeRepository;
+import com.example.datastorageproject.DTO.EmployeeDTO;
+import com.example.datastorageproject.Service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
+import java.util.List;
+
+@RestController
+@RequestMapping("/")
 public class EmployeeController {
-    private final EmployeeRepository employeeRepository;
+    private final EmployeeService employeeService;
     @Autowired
-    public EmployeeController(EmployeeRepository employeeRepository) {
-        this.employeeRepository = employeeRepository;
+    public EmployeeController(EmployeeService employeeService) {
+        this.employeeService = employeeService;
     }
 
-    @GetMapping("/")
-    public String get(){
-        return employeeRepository.findAll().toString();
+    @GetMapping("/employee")
+    public List<EmployeeDTO> get(){
+        return employeeService.getEmployee();
     }
 }

@@ -15,4 +15,5 @@ public class Position {
     private Integer salary;
     @OneToMany(mappedBy = "position", cascade = CascadeType.ALL)
     private List<Employee> employeeList;
+
 }
