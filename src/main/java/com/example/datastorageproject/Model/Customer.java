@@ -1,4 +1,4 @@
-package com.example.datastorageproject.model;
+package com.example.datastorageproject.Model;
 
 import jakarta.persistence.*;
 import lombok.Data;
@@ -7,8 +7,7 @@ import java.util.List;
 
 @Data
 @Entity
-
-public class Employee {
+public class Customer {
     @Id
     @GeneratedValue
     private Integer id;
@@ -18,7 +17,9 @@ public class Employee {
     private String password;
     private String phoneNumber;
     private String email;
-    private Integer positionId;
-    @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
+    private List<OrderTable> orderList;
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
     private List<Testdrive_list> testDriveLists;
+
 }

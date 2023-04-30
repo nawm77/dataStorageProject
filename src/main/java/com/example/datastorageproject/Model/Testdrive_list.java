@@ -1,4 +1,4 @@
-package com.example.datastorageproject.model;
+package com.example.datastorageproject.Model;
 
 import jakarta.persistence.*;
 import lombok.Data;
@@ -15,4 +15,7 @@ public class Testdrive_list {
     @ManyToOne
     @JoinColumn(name = "employee_id")
     private Employee employee;
+    @ManyToOne
+    @JoinColumn(name = "customer_id")
+    private Customer customer;
 }
