@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 @Data
 public class Testdrive_list {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private LocalDateTime dateTime;
     @ManyToOne

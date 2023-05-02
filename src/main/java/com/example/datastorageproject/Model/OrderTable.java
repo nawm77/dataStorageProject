@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 @Data
 public class OrderTable {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @ManyToOne
     @JoinColumn(name = "customerId")

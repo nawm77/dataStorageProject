@@ -3,11 +3,13 @@ package com.example.datastorageproject.Model;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.List;
+
 @Entity
 @Data
 public class Invoice {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @ManyToOne
     @JoinColumn(name = "customerId")
@@ -15,4 +17,6 @@ public class Invoice {
     @ManyToOne
     @JoinColumn(name = "employeeId")
     private Employee employee;
+    @OneToMany(mappedBy = "invoice")
+    private List<OrderPart> orderPartList;
 }

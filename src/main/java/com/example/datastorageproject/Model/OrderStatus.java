@@ -9,7 +9,7 @@ import java.util.List;
 @Data
 public class OrderStatus {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String description;
     @OneToMany(mappedBy = "orderStatus", cascade = CascadeType.ALL)

@@ -9,7 +9,7 @@ import java.util.List;
 @Entity
 public class Position {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String positionName;
     private Integer salary;

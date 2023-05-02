@@ -3,11 +3,17 @@ package com.example.datastorageproject.Model;
 import jakarta.persistence.*;
 import lombok.Data;
 
-@Entity
+import java.util.List;
+
 @Data
-public class AvailableCar {
+@Entity
+public class Part {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    private Integer availableCount;
+    private String name;
     private Integer price;
+    @OneToMany(mappedBy = "parts", cascade = CascadeType.ALL)
+    private List<OrderPart> orderPartList;
 }
