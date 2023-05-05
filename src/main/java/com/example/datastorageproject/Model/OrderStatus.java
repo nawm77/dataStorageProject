@@ -13,5 +13,5 @@ public class OrderStatus {
     private Integer id;
     private String description;
     @OneToMany(mappedBy = "orderStatus", cascade = CascadeType.ALL)
-    private List<OrderTable> orderList;
+    private List<OrderEntity> orderEntityList;
 }

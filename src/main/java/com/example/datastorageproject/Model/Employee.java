@@ -21,5 +21,7 @@ public class Employee {
     @JoinColumn(name = "positionId")
     private Position position;
     @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL)
-    private List<Testdrive_list> testDriveLists;
+    private List<TestDrive> testDriveLists;
+    @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL)
+    private List<Invoice> invoiceList;
 }

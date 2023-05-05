@@ -14,6 +14,6 @@ public class Part {
     private Integer availableCount;
     private String name;
     private Integer price;
-    @OneToMany(mappedBy = "parts", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "part", cascade = CascadeType.ALL)
     private List<OrderPart> orderPartList;
 }

@@ -7,6 +7,7 @@ import java.util.List;
 
 @Data
 @Entity
+/**Переменная price устанавливается только после подтверждения менеджера**/
 public class Car {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,6 +18,14 @@ public class Car {
     private String fuel;
     private String color;
     private String carVinNumber;
+    private Integer price;
+    /*Произведена ли машина*/
     private Boolean isProduced;
+    /*Доступна ли машина в автосалоне на данный момент*/
     private Boolean isAvailable;
+    /*Является ли машина новой или б/у*/
+    private Boolean isNew;
+    @OneToMany(mappedBy = "car", cascade = CascadeType.ALL)
+    private List<Car> carList;
+
 }

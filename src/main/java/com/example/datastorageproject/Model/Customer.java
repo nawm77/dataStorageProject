@@ -18,8 +18,11 @@ public class Customer {
     private String phoneNumber;
     private String email;
     @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
-    private List<OrderTable> orderList;
+    private List<OrderEntity> orderList;
     @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
-    private List<Testdrive_list> testDriveLists;
+    private List<TestDrive> testDriveLists;
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
+    private List<Invoice> invoiceList;
+
 
 }
