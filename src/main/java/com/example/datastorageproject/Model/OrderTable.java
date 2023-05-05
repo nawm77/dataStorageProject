@@ -18,8 +18,4 @@ public class OrderTable {
     @JoinColumn(name = "orderStatusId")
     private OrderStatus orderStatus;
     private LocalDateTime deliveryDate;
-
-    @OneToOne
-    @JoinColumn(name = "carVinNumber")
-    private AvailableCar availableCar;
 }

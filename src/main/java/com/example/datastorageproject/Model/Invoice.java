@@ -19,4 +19,8 @@ public class Invoice {
     private Employee employee;
     @OneToMany(mappedBy = "invoice")
     private List<OrderPart> orderPartList;
+    private String description;
+    @ManyToOne
+    @JoinColumn(name = "carVinNumber")
+    private Car car;
 }
