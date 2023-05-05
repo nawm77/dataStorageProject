@@ -27,5 +27,4 @@ public class Car {
     private Boolean isNew;
     @OneToMany(mappedBy = "car", cascade = CascadeType.ALL)
     private List<Car> carList;
-
 }
