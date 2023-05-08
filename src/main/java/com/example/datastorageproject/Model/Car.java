@@ -25,6 +25,9 @@ public class Car {
     private Boolean isAvailable;
     /*Является ли машина новой или б/у*/
     private Boolean isNew;
+//    @OneToMany(fetch = FetchType.EAGER)
     @OneToMany(mappedBy = "car", cascade = CascadeType.ALL)
-    private List<Car> carList;
+    private List<Invoice> invoiceList;
+    @OneToMany(mappedBy = "car", cascade = CascadeType.ALL)
+    private List<TestDrive> testDriveList;
 }
