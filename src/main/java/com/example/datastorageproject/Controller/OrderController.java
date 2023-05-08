@@ -6,10 +6,7 @@ import com.example.datastorageproject.Service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -28,7 +25,10 @@ public class OrderController {
     }
 
     @PostMapping("/")
-    public ResponseEntity<String> save(OrderEntity order){
+    public ResponseEntity<String> save(@RequestParam("id") Integer id, String s){
+        OrderEntity order = new OrderEntity();
+        /*TODO спроектировать формат запроса на сохранение заказа для */
+//        order.setOrderStatus(id);
         orderService.saveOrder(order);
         return new ResponseEntity<>(HttpStatus.OK);
     }
