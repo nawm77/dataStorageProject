@@ -16,6 +16,7 @@ div {
     align-items: center;
     flex-wrap: wrap;
     text-align: center;
+    font-size: 28px;
 }
 button {
     flex-grow: 1;

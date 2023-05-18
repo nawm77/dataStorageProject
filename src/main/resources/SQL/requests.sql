@@ -1,5 +1,5 @@
 /*Задача 1.1 Вывести всех пользователей, статус которых "Active*/
-SELECT * from "Human" where status='Active';
+SELECT * from "Human" where status='Active' order by email;
 
 /*Задача 1.2 Вывести марку, модель, количество лошадиных сил, топливо и цвет тех машин, у которых больше 500 лс*/
 SELECT make, model, "horsePower", fuel, color from "Car_list" where "horsePower">500;
@@ -43,4 +43,35 @@ WHERE "employeeId" = 3 AND "customerId"=12;
 
 UPDATE "Order_parts"
 SET amount = 15
-WHERE "partArticle"=1 and "invoiceNumber" = 4
+WHERE "partArticle"=1 and "invoiceNumber" = 4;
+
+SELECT *
+FROM "Car_list"
+WHERE make IN ('Chevrolet', 'BMW', 'Mercedes');
+
+SELECT *
+FROM "Car_list"
+WHERE EXISTS (
+    SELECT 1
+    FROM "Available_cars"
+    WHERE "Car_list"."carId" = "Available_cars"."carId"
+      AND "status" = 'available'
+);
+
+SELECT SUM(price) AS total_price
+FROM "Available_cars"
+WHERE "status" = 'available';
+
+SELECT SUM("avaliableCount") AS total_available_parts
+FROM "Parts";
+
+SELECT AVG("price") AS average_price
+FROM "Available_cars"
+WHERE "VinNumber" IN (
+    SELECT "carVinNumber"
+    FROM "Order"
+);
+
+SELECT "positionId", MAX("salary") AS max_salary
+FROM "Position"
+GROUP BY "positionId";
