@@ -1,6 +1,6 @@
 package com.example.datastorageproject.DTO;
 
-public record CarDTO(Integer id, String make, String model, Integer horsePower, String fuel, String carVinNumber, Integer price, Boolean isProduced, Boolean isAvailable, Boolean isNew) {
+public record CarDTO(Integer id, String make, String model, Integer horsePower, String fuel, String color, String carVinNumber, Integer price, Boolean isProduced, Boolean isAvailable, Boolean isNew) {
     @Override
     public String toString() {
         return "CarDTO{" +
@@ -9,6 +9,7 @@ public record CarDTO(Integer id, String make, String model, Integer horsePower, 
                 ", model='" + model + '\'' +
                 ", horsePower=" + horsePower +
                 ", fuel='" + fuel + '\'' +
+                ", color='" + color + '\'' +
                 ", carVinNumber='" + carVinNumber + '\'' +
                 ", price=" + price +
                 ", isProduced=" + isProduced +
