@@ -23,6 +23,7 @@ public class Customer {
     private List<TestDrive> testDriveLists;
     @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
     private List<Invoice> invoiceList;
-
-
+    @Column(name = "role")
+    @Enumerated(value = EnumType.STRING)
+    private Role role;
 }

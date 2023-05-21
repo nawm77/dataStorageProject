@@ -7,11 +7,11 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: root
       POSTGRES_DB: dataStorageProject
-      PGDATA: /data/postgres
+      PGDATA: /var/lib/postgresql/data
     volumes:
-      - postgres:/data/postgres
+      - postgres:/var/lib/postgresql/data
     ports:
-      - "5432:5432"
+      - '5432:5432'
     networks:
       - postgres
   pgadmin:
@@ -21,12 +21,50 @@ services:
       PGADMIN_DEFAULT_EMAIL: email@gmail.com
       PGADMIN_DEFAULT_PASSWORD: root
     ports:
-      - "5050:80"
+      - '5050:80'
     networks:
       - postgres
+    volumes:
+      - .backup/:/var/lib/pgadmin/storage/email_gmail.com
 networks:
   postgres:
     driver: bridge
 volumes:
   postgres:
   pgadmin:
+
+
+#version: "3"
+#services:
+#  postgres:
+#    container_name: postgresContainer
+#    image: postgres
+#    environment:
+#      POSTGRES_USER: postgres
+#      POSTGRES_PASSWORD: root
+#      POSTGRES_DB: testDB
+#      PGDATA: /var/lib/postgresql/data
+#    volumes:
+#      - postgres:/var/lib/postgresql/data
+#    ports:
+#      - '5432:5432'
+#    networks:
+#      - postgres
+#  pgadmin:
+#    container_name: pgadminContainer
+#    image: dpage/pgadmin4
+#    environment:
+#      PGADMIN_DEFAULT_EMAIL: test@gmail.com
+#      PGADMIN_DEFAULT_PASSWORD: root
+#    ports:
+#      - '5050:80'
+#    networks:
+#      - postgres
+#    volumes:
+#      - .backup/:/var/lib/pgadmin/storage/test_gmail.com
+#networks:
+#  postgres:
+#    driver: bridge
+#volumes:
+#  postgres:
+#  pgadmin:
