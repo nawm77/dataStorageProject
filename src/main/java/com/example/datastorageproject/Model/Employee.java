@@ -1,22 +1,15 @@
 package com.example.datastorageproject.Model;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.util.List;
 
+@EqualsAndHashCode(callSuper = true)
 @Data
 @Entity
-public class Employee {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-    private String name;
-    private String surname;
-    private String login;
-    private String password;
-    private String phoneNumber;
-    private String email;
+public class Employee extends User {
     @ManyToOne
     @JoinColumn(name = "positionId")
     private Position position;

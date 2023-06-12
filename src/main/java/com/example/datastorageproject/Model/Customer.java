@@ -1,29 +1,21 @@
 package com.example.datastorageproject.Model;
 
-import jakarta.persistence.*;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import java.util.List;
 
+@EqualsAndHashCode(callSuper = true)
 @Data
 @Entity
-public class Customer {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-    private String name;
-    private String surname;
-    private String login;
-    private String password;
-    private String phoneNumber;
-    private String email;
+public class Customer extends User {
     @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
     private List<OrderEntity> orderList;
     @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
     private List<TestDrive> testDriveLists;
     @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
     private List<Invoice> invoiceList;
-    @Column(name = "role")
-    @Enumerated(value = EnumType.STRING)
-    private Role role;
 }
