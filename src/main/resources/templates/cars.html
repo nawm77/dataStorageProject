@@ -9,7 +9,7 @@
 </head>
 <body>
 <div>
-  <form action="/cars/new" method="get">
+  <form sec:authorize="hasAnyAuthority('admin:write', 'employee:write')" action="/cars/new" method="get">
     <div>
       <button>Добавить новую машину</button>
     </div>
