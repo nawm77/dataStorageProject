@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form th:action="@{/cars/add/}" method="post" th:object="${car}">
+  <div class="form-row">
+    <label for="make">Марка</label>
+    <input type="text" th:field="*{make}" id="make" placeholder="Марка">
+  </div>
+  <div class="form-row">
+    <label for="model">Модель</label>
+    <input type="text" th:field="*{model}" id="model" placeholder="Модель">
+  </div>
+  <div class="form-row">
+    <label for="horsePower">Количество лошадиных сил</label>
+    <input type="text" th:field="*{horsePower}" th:fieldtype="java.lang.Integer" id="horsePower" placeholder="Количество лошадиных сил">
+  </div>
+  <div class="form-row">
+    <label for="fuel">Тип топлива</label>
+    <input type="text" th:field="*{fuel}" id="fuel" placeholder="Тип топлива">
+  </div>
+  <div class="form-row">
+    <label for="color">Цвет</label>
+    <input type="text" th:field="*{color}" id="color" placeholder="Цвет">
+  </div>
+  <div class="form-row">
+    <label for="price">Цена</label>
+    <input type="text" th:field="*{price}" th:fieldtype="java.lang.Integer" id="price" placeholder="Цена">
+  </div>
+  <div class="form-row">
+    <label for="vin">VIN</label>
+    <input type="text" th:field="*{carVinNumber}" id="vin" placeholder="VIN">
+  </div>
+  <button class="floating-button" type="submit">Подтвердить</button>
+</form>
+</body>
+</html>

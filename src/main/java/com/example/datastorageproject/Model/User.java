@@ -2,7 +2,6 @@ package com.example.datastorageproject.Model;
 
 import javax.persistence.*;
 
-import lombok.Builder;
 import lombok.Data;
 
 import java.util.List;

@@ -39,6 +39,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/").permitAll()
                 .antMatchers("/admin/**").hasAuthority(Permission.ADMIN_PERMISSION_READ.getPermission())
+                .antMatchers("/cars/edit/**").hasAnyAuthority(Permission.ADMIN_PERMISSION_READ.getPermission(), Permission.EMPLOYEE_PERMISSION_WRITE.getPermission())
                 .and()
                 .formLogin()
                 .loginPage("/auth/login")

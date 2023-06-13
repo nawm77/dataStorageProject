@@ -30,7 +30,4 @@ public class Car {
     private List<Invoice> invoiceList;
     @OneToMany(mappedBy = "car", cascade = CascadeType.ALL)
     private List<TestDrive> testDriveList;
-    @ManyToOne
-    @JoinColumn(name = "orderId")
-    private OrderEntity order;
 }
