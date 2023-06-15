@@ -7,6 +7,11 @@
 </head>
 <body>
 <h2>Edit Car Information</h2>
+<form action="/" method="get">
+    <div>
+        <button>Домой</button>
+    </div>
+</form>
 <form th:action="@{/cars/update/{id}(id=${car.getId()})}" method="post" th:object="${car}">
     <div class="form-row">
         <label for="make">Марка</label>

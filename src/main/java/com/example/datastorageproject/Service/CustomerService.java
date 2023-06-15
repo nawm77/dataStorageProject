@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class CustomerService {
     private final CustomerRepository customerRepository;
@@ -29,5 +31,9 @@ public class CustomerService {
          customer.setLastname(user.getLastname());
          customer.setPhoneNumber(user.getPhoneNumber());
          customerRepository.save(customer);
+    }
+
+    public List<Customer> findAll(){
+        return customerRepository.findAll();
     }
 }

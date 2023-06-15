@@ -1,11 +1,24 @@
 <!DOCTYPE html>
 <html lang="en"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
+<form action="/" method="get">
+    <div>
+        <button>Домой</button>
+    </div>
+</form>
+<div>
+    <form sec:authorize="hasAnyAuthority('admin:write', 'employee:write')" action="/callback/list" method="get">
+        <div>
+            <button>Посмотреть список заявок</button>
+        </div>
+    </form>
+</div>
 <form th:action="@{/callback/send/}" method="post" th:object="${callback}">
     <div class="form-row">
         <label for="name">Имя</label>

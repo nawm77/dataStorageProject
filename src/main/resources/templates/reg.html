@@ -6,6 +6,11 @@
     <title>User Registration</title>
 </head>
 <body>
+<form action="/" method="get">
+    <div>
+        <button>Домой</button>
+    </div>
+</form>
 <h2>User Registration</h2>
 <form th:action="@{/auth/reg}" th:method="POST" th:object="${user}">
     <label for="username">Username:</label>

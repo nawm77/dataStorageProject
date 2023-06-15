@@ -37,4 +37,8 @@ public class OrderService {
         order.setDeliveryDate(LocalDateTime.now());
         orderRepository.saveAndFlush(order);
     }
+
+    public List<OrderEntity> findAll(){
+        return orderRepository.findAll();
+    }
 }

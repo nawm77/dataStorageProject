@@ -50,11 +50,11 @@ insert into "Available_cars" ("VinNumber", "carId", price, status) values ('VINN
 insert into "Available_cars" ("VinNumber", "carId", price, status) values ('VINTEST5567162438', 1007, 1900000, 'available');
 insert into "Available_cars" ("VinNumber", "carId", price, status) values ('VINREL10923KHA198', 1008, 1800000, 'unavailable');
 /*Заполнение таблицы с запчастями*/
-INSERT INTO "Parts" (article, "avaliableCount", name, price) VALUES (123456, 50, 'Spark Plug', 5);
-INSERT INTO "Parts" (article, "avaliableCount", name, price) VALUES (789012, 25, 'Oil Filter', 8);
-INSERT INTO "Parts" (article, "avaliableCount", name, price) VALUES (345678, 10, 'Brake Pads', 25);
-INSERT INTO "Parts" (article, "avaliableCount", name, price) VALUES (901234, 15, 'Air Filter', 12);
-INSERT INTO "Parts" (article, "avaliableCount", name, price) VALUES (567890, 5, 'Fuel Pump', 50);
+INSERT INTO part (id, available_count, name, price) VALUES (1, 50, 'Spark Plug', 5);
+INSERT INTO part (id, available_count, name, price) VALUES (2, 25, 'Oil Filter', 8);
+INSERT INTO part (id, available_count, name, price) VALUES (3, 10, 'Brake Pads', 25);
+INSERT INTO part (id, available_count, name, price) VALUES (4, 15, 'Air Filter', 12);
+INSERT INTO part (id, available_count, name, price) VALUES (5, 5, 'Fuel Pump', 50);
 /*Заполнение таблицы с заказами в сервис*/
 INSERT INTO "Invoices" ("invoiceNumber", "customerId", "carVinNumber", "employeeId", description) VALUES (5001, 1001, '1GCHK23295F841282', 2001, 'Oil Change');
 INSERT INTO "Invoices" ("invoiceNumber", "customerId", "carVinNumber", "employeeId", description) VALUES (5002, 1002, '1GNSKJKC8FR120141', 2002, 'Brake Repair');

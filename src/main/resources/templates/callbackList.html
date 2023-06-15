@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="/" method="get">
+  <div>
+    <button>Домой</button>
+  </div>
+</form>
+<div th:switch="${list}">
+    <h2 th:case="null">No callback found</h2>
+    <div th:case="*">
+        <h2>Callback</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>Сообщение</th>
+                <th>Номер телефона</th>
+                <th>Имя</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="call : ${list}">
+                <td th:text="${call.message}"></td>
+                <td th:text="${call.number}"></td>
+                <td th:text="${call.name}"></td>
+                <td><a sec:authorize="hasAnyAuthority('admin:write', 'employee:write')" th:href="@{/callback/delete/{id}(id=${call.id})}">Delete</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>

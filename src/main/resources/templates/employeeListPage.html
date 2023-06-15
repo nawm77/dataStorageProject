@@ -7,6 +7,11 @@
     <title>Title</title>
 </head>
 <body>
+<form action="/" method="get">
+    <div>
+        <button>Домой</button>
+    </div>
+</form>
 <div>
     <form sec:authorize="hasAnyAuthority('admin:write', 'employee:write')" action="/admin/employee/new" method="get">
         <div>

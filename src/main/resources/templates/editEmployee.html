@@ -7,6 +7,11 @@
 </head>
 <body>
 <h2>Edit Employee Information</h2>
+<form action="/" method="get">
+    <div>
+        <button>Домой</button>
+    </div>
+</form>
 <form th:action="@{/admin/employee/edit/{id}(id=${employee.getId()})}" method="post" th:object="${employee}">
     <div class="form-row">
         <label for="name">Имя</label>

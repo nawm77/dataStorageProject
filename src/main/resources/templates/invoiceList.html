@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="/" method="get">
+    <div>
+        <button>Домой</button>
+    </div>
+</form>
+<div th:switch="${invoiceList}">
+    <h2 th:case="null">No invoices found</h2>
+    <div th:case="*">
+        <h2>Invoice</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>Клиент</th>
+                <th>Сотрудник</th>
+                <th>Описание</th>
+                <th>VIN номер машины</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="i : ${invoiceList}">
+                <td th:text="${i.customer.getName() + ' ' + i.customer.getLastname()}"></td>
+                <td th:text="${i.employee.getName() + ' ' + i.employee.getLastname()}"></td>
+                <td th:text="${i.description}"></td>
+                <td th:text="${i.car.getCarVinNumber()}"></td>
+<!--                TODO сделать кнопку "посмотреть список деталей"-->
+                <td><a sec:authorize="hasAnyAuthority('admin:write', 'employee:write')" th:href="@{/service/delete/{id}(id=${i.id})}">Delete</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>

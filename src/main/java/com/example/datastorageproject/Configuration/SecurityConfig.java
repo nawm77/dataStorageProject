@@ -40,6 +40,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/").permitAll()
                 .antMatchers("/admin/**").hasAuthority(Permission.ADMIN_PERMISSION_READ.getPermission())
                 .antMatchers("/cars/**").permitAll()
+                .antMatchers("/callback/list").hasAnyAuthority(Permission.ADMIN_PERMISSION_READ.getPermission(), Permission.EMPLOYEE_PERMISSION_READ.getPermission())
+                .antMatchers("/callback/delete/**").hasAnyAuthority(Permission.ADMIN_PERMISSION_READ.getPermission(), Permission.EMPLOYEE_PERMISSION_READ.getPermission())
                 .and()
                 .formLogin()
                 .loginPage("/auth/login")

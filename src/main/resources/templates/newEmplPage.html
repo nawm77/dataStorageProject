@@ -6,6 +6,11 @@
     <title>Title</title>
 </head>
 <body>
+<form action="/" method="get">
+    <div>
+        <button>Домой</button>
+    </div>
+</form>
 <form th:action="@{/admin/employee/new/}" method="post" th:object="${employee}">
     <div class="form-row">
         <label for="username">Имя пользователя</label>

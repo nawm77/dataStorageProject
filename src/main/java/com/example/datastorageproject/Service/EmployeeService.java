@@ -27,15 +27,6 @@ public class EmployeeService {
 
     public List<EmployeeDTO> getEmployee(){
         List<Employee> employees = employeeRepository.findAll();
-//        return employees.stream()
-//                .map(e -> new EmployeeDTO(
-//                        e.getId(),
-//                        e.getName(),
-//                        e.getSurname(),
-//                        e.getPhoneNumber(),
-//                        e.getEmail()))
-//                .collect(Collectors.toList());
-//
         return employees.stream()
                 .map(EmployeeMapper.INSTANCE::toDTO)
                 .collect(Collectors.toList());
@@ -58,5 +49,8 @@ public class EmployeeService {
 
     public void deleteById(Integer id){
         employeeRepository.deleteById(id);
+    }
+    public List<Employee> findAll(){
+        return employeeRepository.findAll();
     }
 }

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="/" method="get">
+    <div>
+        <button>Домой</button>
+    </div>
+</form>
+<form action="/service/list" method="get">
+    <div>
+        <button>Список заявок</button>
+    </div>
+</form>
+<form th:action="@{/service/}" method="post" th:object="${order}">
+    <div class="select">
+        <label>Клиент</label>
+        <select th:field="*{customer}">
+            <option th:each="c : ${customerList}" th:value="${c.getId()}" th:text="${c.getName() + ' ' + c.getLastname()}"></option>
+        </select>
+        <div style="color: red" th:if="${#fields.hasErrors('customer')}" th:errors="*{customer}">Role error</div>
+    </div>
+    <div class="form-row">
+        <label>Сотрудник</label>
+        <select th:field="*{employee}">
+            <option th:each="e : ${employeeList}" th:value="${e.getId()}" th:text="${e.getName() + ' ' + e.getLastname()}"></option>
+        </select>
+        <div style="color: red" th:if="${#fields.hasErrors('employee')}" th:errors="*{employee}">Employee error</div>
+    </div>
+    <div class="form-row">
+        <label>Машина</label>
+        <select th:field="*{car}">
+            <option th:each="car : ${carList}" th:value="${car.carVinNumber}" th:text="${car.getMake() + ' ' + car.getModel()}"></option>
+        </select>
+        <div style="color: red" th:if="${#fields.hasErrors('car')}" th:errors="*{car}">Car error</div>
+    </div>
+    <div class="form-row">
+        <label for="description">Описание</label>
+        <input type="text" th:field="*{description}" id="description" placeholder="Описание">
+        <div style="color: red" th:if="${#fields.hasErrors('description')}" th:errors="*{description}">description error</div>
+    </div>
+<!--    TODO Сделать функционал добавления позиций в список для сервиса-->
+    <button class="floating-button" type="submit">Подтвердить</button>
+</form>
+</body>
+</html>
