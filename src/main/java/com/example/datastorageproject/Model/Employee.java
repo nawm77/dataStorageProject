@@ -1,8 +1,11 @@
 package com.example.datastorageproject.Model;
 
 import javax.persistence.*;
+
+import com.example.datastorageproject.Repository.PositionRepository;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
@@ -10,6 +13,7 @@ import java.util.List;
 @Data
 @Entity
 public class Employee extends User {
+
     private Integer salary;
     @ManyToOne
     @JoinColumn(name = "positionId")

@@ -3,11 +3,15 @@
       xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Edit employee information</title>
+    <title>Title</title>
 </head>
 <body>
-<h2>Edit Employee Information</h2>
-<form th:action="@{/admin/employee/edit/{id}(id=${employee.getId()})}" method="post" th:object="${employee}">
+<form th:action="@{/admin/employee/new/}" method="post" th:object="${employee}">
+    <div class="form-row">
+        <label for="username">Имя пользователя</label>
+        <input type="text" th:field="*{username}" id="username" placeholder="Имя">
+        <div style="color: red" th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Username error</div>
+    </div>
     <div class="form-row">
         <label for="name">Имя</label>
         <input type="text" th:field="*{name}" id="name" placeholder="Имя">
@@ -38,19 +42,7 @@
         <input type="password" th:field="*{password}" id="password" placeholder="Пароль">
         <div style="color: red" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password error</div>
     </div>
-    <div class="select">
-        <label>Role</label>
-        <select th:field="*{role}">
-            <option th:each="p : ${roleList}" th:value="${p}" th:text="${p}"></option>
-        </select>
-        <div style="color: red" th:if="${#fields.hasErrors('role')}" th:errors="*{role}">Role error</div>
-    </div>
-    <div class="select">
-        <label>Position</label>
-        <select th:field="*{position}">
-            <option th:each="p : ${positionList}" th:value="${p.getId()}" th:text="${p.getPositionName()}"></option>
-        </select>
-    </div>
+
     <button class="floating-button" type="submit">Подтвердить</button>
 </form>
 </body>

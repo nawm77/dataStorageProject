@@ -15,4 +15,11 @@ public class Position {
     @OneToMany(mappedBy = "position", cascade = CascadeType.ALL)
     private List<Employee> employeeList;
 
+    @Override
+    public String toString() {
+        return "Position{" +
+                "id=" + id +
+                ", positionName='" + positionName +
+                '}';
+    }
 }

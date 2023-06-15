@@ -7,6 +7,13 @@
     <title>Title</title>
 </head>
 <body>
+<div>
+    <form sec:authorize="hasAnyAuthority('admin:write', 'employee:write')" action="/admin/employee/new" method="get">
+        <div>
+            <button>Добавить нового работника</button>
+        </div>
+    </form>
+</div>
 <div th:switch="${employees}">
     <h2 th:case="null">No employees found</h2>
     <div th:case="*">
@@ -28,10 +35,10 @@
                 <td th:text="${employee.lastname}"></td>
                 <td th:text="${employee.phoneNumber}"></td>
                 <td th:text="${employee.email()}"></td>
-                <td th:text="${employee.position.getPositionName()}"></td>
+                <td th:text="${employee.position().getPositionName()}"></td>
                 <td th:text="${employee.salary}"></td>
                 <td><a sec:authorize="hasAnyAuthority('admin:write', 'employee:write')" th:href="@{/admin/employee/edit/{id}(id=${employee.id})}">Update</a></td>
-<!--                <td><a sec:authorize="hasAnyAuthority('admin:write', 'employee:write')" th:href="@{cars/delete/{id}(id=${car.id})}">Delete</a></td>-->
+                <td><a sec:authorize="hasAnyAuthority('admin:write', 'employee:write')" th:href="@{/admin/employee/delete/{id}(id=${employee.id})}">Delete</a></td>
             </tr>
             </tbody>
         </table>
