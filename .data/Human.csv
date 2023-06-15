@@ -1,0 +1,11 @@
+humanId;name;lastName;surname;phoneNumber;email;status
+1001;John;Smith;Johnson;1234567890;johnsmith@example.com;Active
+1002;Jane;Doe;Johnson;2345678901;janedoe@example.com;Active
+1003;Michael;Brown;Davis;3456789012;michaelbrown@example.com;Inactive
+1004;Emily;Taylor;Miller;4567890123;emilytaylor@example.com;Active
+1005;William;Anderson;Wilson;5678901234;williamanderson@example.com;Active
+2001;Elizabeth;Lee;Wilson;6789012345;elizabethlee@example.com;Inactive
+2002;James;Baker;King;7890123456;jamesbaker@example.com;Active
+2003;Olivia;Garcia;Lee;8901234567;oliviagarcia@example.com;Active
+2004;David;Jackson;Harris;9012345678;davidjackson@example.com;Inactive
+2005;Sophia;White;Harris;1234567890;sophiawhite@example.com;Active
