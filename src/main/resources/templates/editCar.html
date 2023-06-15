@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h2>Edit Car Information</h2>
+<form th:action="@{/cars/update/{id}(id=${car.getId()})}" method="post" th:object="${car}">
+    <div class="form-row">
+        <label for="make">Марка</label>
+        <input type="text" th:field="*{make}" id="make" placeholder="Марка">
+        <div style="color: red" th:if="${#fields.hasErrors('make')}" th:errors="*{make}">Make error</div>
+    </div>
+    <div class="form-row">
+        <label for="model">Модель</label>
+        <input type="text" th:field="*{model}" id="model" placeholder="Модель">
+        <div style="color: red" th:if="${#fields.hasErrors('model')}" th:errors="*{model}">Model error</div>
+    </div>
+    <div class="form-row">
+        <label for="horsePower">Количество лошадиных сил</label>
+        <input type="text" th:field="*{horsePower}" th:fieldtype="java.lang.Integer" id="horsePower" placeholder="Количество лошадиных сил">
+        <div style="color: red" th:if="${#fields.hasErrors('horsePower')}" th:errors="*{horsePower}">Horse power error</div>
+    </div>
+    <div class="form-row">
+        <label for="fuel">Тип топлива</label>
+        <input type="text" th:field="*{fuel}" id="fuel" placeholder="Тип топлива">
+        <div style="color: red" th:if="${#fields.hasErrors('fuel')}" th:errors="*{fuel}">Fuel type error</div>
+    </div>
+    <div class="form-row">
+        <label for="color">Цвет</label>
+        <input type="text" th:field="*{color}" id="color" placeholder="Цвет">
+        <div style="color: red" th:if="${#fields.hasErrors('color')}" th:errors="*{color}">Color error</div>
+    </div>
+    <div class="form-row">
+        <label for="price">Цена</label>
+        <input type="text" th:field="*{price}" th:fieldtype="java.lang.Integer" id="price" placeholder="Цена">
+        <div style="color: red" th:if="${#fields.hasErrors('price')}" th:errors="*{price}">Price error</div>
+    </div>
+    <div class="form-row">
+        <label for="vin">VIN</label>
+        <input type="text" th:field="*{carVinNumber}" id="vin" placeholder="VIN">
+        <div style="color: red" th:if="${#fields.hasErrors('carVinNumber')}" th:errors="*{carVinNumber}">VIN number error</div>
+    </div>
+
+
+    <div class="form-row">
+        <label for="status">Доступна</label>
+        <select th:field="*{isAvailable}" id="status">
+            <option value="true">Да</option>
+            <option value="false">Нет</option>
+        </select>
+    </div>
+    <div class="form-row">
+        <label for="type">Новая</label>
+        <select th:field="*{isNew}" id="type">
+            <option value="true">Да</option>
+            <option value="false">Нет</option>
+        </select>
+    </div>
+    <div class="form-row">
+        <label for="produced">Произведена</label>
+        <select th:field="*{isProduced}" id="produced">
+            <option value="true">Да</option>
+            <option value="false">Нет</option>
+        </select>
+    </div>
+    <button class="floating-button" type="submit">Подтвердить</button>
+</form>
+</body>
+</html>

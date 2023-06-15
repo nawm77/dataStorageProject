@@ -18,7 +18,5 @@ public class OrderEntity {
     @ManyToOne
     @JoinColumn(name = "orderStatusId")
     private OrderStatus orderStatus;
-    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
-    private List<Car> carList;
     private LocalDateTime deliveryDate;
 }

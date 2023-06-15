@@ -10,6 +10,7 @@ import java.util.List;
 @Data
 @Entity
 public class Employee extends User {
+    private Integer salary;
     @ManyToOne
     @JoinColumn(name = "positionId")
     private Position position;

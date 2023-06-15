@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:switch="${employees}">
+    <h2 th:case="null">No employees found</h2>
+    <div th:case="*">
+        <h2>Employees</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>Имя</th>
+                <th>Фамилия</th>
+                <th>Номер телефона</th>
+                <th>Почта</th>
+                <th>Должность</th>
+                <th>Зарплата</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="employee : ${employees}">
+                <td th:text="${employee.name}"></td>
+                <td th:text="${employee.lastname}"></td>
+                <td th:text="${employee.phoneNumber}"></td>
+                <td th:text="${employee.email()}"></td>
+                <td th:text="${employee.position.getPositionName()}"></td>
+                <td th:text="${employee.salary}"></td>
+                <td><a sec:authorize="hasAnyAuthority('admin:write', 'employee:write')" th:href="@{/admin/employee/edit/{id}(id=${employee.id})}">Update</a></td>
+<!--                <td><a sec:authorize="hasAnyAuthority('admin:write', 'employee:write')" th:href="@{cars/delete/{id}(id=${car.id})}">Delete</a></td>-->
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>

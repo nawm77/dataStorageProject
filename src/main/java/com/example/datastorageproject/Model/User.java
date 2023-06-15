@@ -2,7 +2,6 @@ package com.example.datastorageproject.Model;
 
 import javax.persistence.*;
 
-import lombok.Builder;
 import lombok.Data;
 
 import java.util.List;
@@ -12,7 +11,7 @@ import java.util.List;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
     private String name;
     private String lastname;
     private String username;

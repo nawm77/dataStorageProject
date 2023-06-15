@@ -19,4 +19,20 @@ public class CarService {
     public List<Car> getAllCars(){
         return carRepository.findAll();
     }
+    public Car getById(Integer id){
+        return carRepository.getById(id);
+    }
+    public void saveCar(Car car){
+        carRepository.save(car);
+    }
+    public void updateCar(Integer id, Car car){
+        Car carFromRepo = carRepository.getById(id);
+        carFromRepo = car;
+        carRepository.deleteById(id);
+        carRepository.save(carFromRepo);
+    }
+
+    public void deleteCarById(Integer id){
+        carRepository.deleteById(id);
+    }
 }
