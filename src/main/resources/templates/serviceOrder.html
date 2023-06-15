@@ -34,7 +34,7 @@
     <div class="form-row">
         <label>Машина</label>
         <select th:field="*{car}">
-            <option th:each="car : ${carList}" th:value="${car.carVinNumber}" th:text="${car.getMake() + ' ' + car.getModel()}"></option>
+            <option th:each="car : ${carList}" th:value="${car.getId()}" th:text="${car.getMake() + ' ' + car.getModel()}"></option>
         </select>
         <div style="color: red" th:if="${#fields.hasErrors('car')}" th:errors="*{car}">Car error</div>
     </div>

@@ -27,11 +27,12 @@ public class ServiceController {
         model.addAttribute("employeeList", serviceService.getEmployeeList());
         model.addAttribute("orderList", serviceService.getOrderList());
         model.addAttribute("carList", serviceService.getCarList());
-        System.out.println(serviceService.getCarList());
         return "serviceOrder";
     }
     @PostMapping("/")
     public String saveOrder(Invoice invoice){
+        System.out.println("WUIAEYFGBWYUEb");
+        System.out.println(invoice.getCar().getCarVinNumber());
         serviceService.saveInvoice(invoice);
         System.out.println(invoice.getCar().getCarVinNumber());
         return "redirect:/";

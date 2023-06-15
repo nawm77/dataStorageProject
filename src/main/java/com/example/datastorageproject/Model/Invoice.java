@@ -21,6 +21,6 @@ public class Invoice {
     private List<OrderPart> orderPartList;
     private String description;
     @ManyToOne
-    @JoinColumn(name = "carVinNumber")
+    @JoinColumn(name = "carId")
     private Car car;
 }
