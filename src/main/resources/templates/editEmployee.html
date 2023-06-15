@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit employee information</title>
+</head>
+<body>
+<h2>Edit Car Information</h2>
+<form th:action="@{/admin/employee/edit/{id}(id=${employee.getId()})}" method="post" th:object="${employee}">
+    <div class="form-row">
+        <label for="name">Имя</label>
+        <input type="text" th:field="*{name}" id="name" placeholder="Имя">
+        <div style="color: red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name error</div>
+    </div>
+    <div class="form-row">
+        <label for="lastname">Фамилия</label>
+        <input type="text" th:field="*{lastname}" id="lastname" placeholder="Модель">
+        <div style="color: red" th:if="${#fields.hasErrors('lastname')}" th:errors="*{lastname}">Lastname error</div>
+    </div>
+    <div class="form-row">
+        <label for="phoneNumber">Номер телефона</label>
+        <input type="text" th:field="*{phoneNumber}" id="phoneNumber" placeholder="Номер телефона">
+        <div style="color: red" th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}">Phone number error error</div>
+    </div>
+    <div class="form-row">
+        <label for="email">Почта</label>
+        <input type="text" th:field="*{email}" id="email" placeholder="Почта">
+        <div style="color: red" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email error</div>
+    </div>
+    <div class="form-row">
+        <label for="salary">Зарплата</label>
+        <input type="text" th:field="*{salary}" id="salary" placeholder="Зарплата">
+        <div style="color: red" th:if="${#fields.hasErrors('salary')}" th:errors="*{salary}">Salary error</div>
+    </div>
+    <button class="floating-button" type="submit">Подтвердить</button>
+</form>
+</body>
+</html>

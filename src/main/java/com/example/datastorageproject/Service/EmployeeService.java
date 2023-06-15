@@ -34,4 +34,24 @@ public class EmployeeService {
                 .map(EmployeeMapper.INSTANCE::toDTO)
                 .collect(Collectors.toList());
     }
+
+    public Employee getEmployeeById(Integer id){
+        return employeeRepository.getById(id);
+    }
+
+    public void updateEmployee(Integer id, Employee employee){
+        employeeRepository.deleteById(id);
+        employee.setId(id);
+        employeeRepository.save(employee);
+    }
+
+    public void saveEmployee(Employee employee){
+        Employee existempl = employeeRepository.getById(employee.getId());
+        employee.setPosition(existempl.getPosition());
+        employee.setPassword(existempl.getPassword());
+        employee.setRole(existempl.getRole());
+        employee.setStatus(existempl.getStatus());
+        employee.setUsername(existempl.getUsername());
+        employeeRepository.save(employee);
+    }
 }

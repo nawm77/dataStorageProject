@@ -2,7 +2,7 @@ package com.example.datastorageproject.DTO;
 
 import com.example.datastorageproject.Model.Position;
 
-public record EmployeeDTO(Integer id, String name, String lastname, String phoneNumber, String email, Position position) {
+public record EmployeeDTO(Integer id, String name, String lastname, String phoneNumber, String email, Position position, Integer salary) {
     @Override
     public String toString() {
         return "EmployeeDTO{" +
@@ -12,7 +12,7 @@ public record EmployeeDTO(Integer id, String name, String lastname, String phone
                 ", phoneNumber='" + phoneNumber + '\'' +
                 ", email='" + email + '\'' +
                 ", position='" + position.getPositionName() + '\'' +
-                ", salary='" + position.getSalary() + '\'' +
+                ", salary='" + salary + '\'' +
                 '}';
     }
 }

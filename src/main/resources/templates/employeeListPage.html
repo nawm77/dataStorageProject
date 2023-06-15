@@ -29,8 +29,8 @@
                 <td th:text="${employee.phoneNumber}"></td>
                 <td th:text="${employee.email()}"></td>
                 <td th:text="${employee.position.getPositionName()}"></td>
-                <td th:text="${employee.position.getSalary()}"></td>
-<!--                <td><a sec:authorize="hasAnyAuthority('admin:write', 'employee:write')" th:href="@{cars/update/{id}(id=${car.id})}">Update</a></td>-->
+                <td th:text="${employee.salary}"></td>
+                <td><a sec:authorize="hasAnyAuthority('admin:write', 'employee:write')" th:href="@{/admin/employee/edit/{id}(id=${employee.id})}">Update</a></td>
 <!--                <td><a sec:authorize="hasAnyAuthority('admin:write', 'employee:write')" th:href="@{cars/delete/{id}(id=${car.id})}">Delete</a></td>-->
             </tr>
             </tbody>

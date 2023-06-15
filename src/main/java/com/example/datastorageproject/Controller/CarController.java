@@ -7,11 +7,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.validation.Valid;
 import java.util.stream.Collectors;
 
 @Controller
@@ -39,7 +41,10 @@ public class CarController {
     }
     @PreAuthorize("hasAnyAuthority('employee:write')")
     @PostMapping("/cars/update/{id}")
-    public String update(@PathVariable("id") Integer id, Car car){
+    public String update(@PathVariable("id") Integer id, @Valid Car car, Errors errors){
+        if(errors.hasErrors()){
+            return "editCar";
+        }
         carService.updateCar(id, car);
         return "redirect:/cars";
     }
@@ -51,7 +56,10 @@ public class CarController {
     }
     @PreAuthorize("hasAnyAuthority('employee:write')")
     @PostMapping("/cars/add")
-    public String addNewCar(Car car){
+    public String addNewCar(@Valid Car car, Errors errors){
+        if(errors.hasErrors()){
+            return "newCarForm";
+        }
         carService.saveCar(car);
         return "redirect:/cars";
     }
