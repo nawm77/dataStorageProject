@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="/" method="get">
+  <div>
+    <button>Домой</button>
+  </div>
+</form>
+<div th:switch="${list}">
+  <h2 th:case="null">No info found</h2>
+  <div th:case="*">
+    <h2>Info</h2>
+    <table>
+      <thead>
+      <tr>
+        <th>Марка</th>
+        <th>Модель</th>
+        <th>VIN номер</th>
+        <th>Описание</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="l : ${list}">
+        <td th:text="${l.make()}"></td>
+        <td th:text="${l.model()}"></td>
+        <td th:text="${l.carVinNumber()}"></td>
+        <td th:text="${l.description()}"></td>
+      </tbody>
+    </table>
+  </div>
+</div>
+</body>
+</html>
