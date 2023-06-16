@@ -33,6 +33,7 @@
                 <td th:text="${i.getCar().getCarVinNumber()}"></td>
 <!--                TODO сделать кнопку "посмотреть список деталей"-->
                 <td><a sec:authorize="hasAnyAuthority('admin:write', 'employee:write')" th:href="@{/service/delete/{id}(id=${i.id})}">Delete</a></td>
+                <td><a sec:authorize="hasAnyAuthority('admin:write', 'employee:write')" th:href="@{/service/details/{id}(id=${i.id})}">View details</a></td>
             </tr>
             </tbody>
         </table>

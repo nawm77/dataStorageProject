@@ -74,6 +74,7 @@ public class AdminController {
     @PostMapping("/employee/new")
     public String addEmployee(Employee employee){
         System.out.println(employee.getId());
+        employee.setPosition(positionRepository.getById(0));
         employeeService.saveEmployee(employee);
         return "redirect:/admin/employee";
     }

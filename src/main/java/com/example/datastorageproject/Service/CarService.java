@@ -28,7 +28,7 @@ public class CarService {
     public void updateCar(Integer id, Car car){
         Car carFromRepo = carRepository.getById(id);
         carFromRepo = car;
-        carRepository.deleteById(id);
+        carFromRepo.setId(id);
         carRepository.save(carFromRepo);
     }
 

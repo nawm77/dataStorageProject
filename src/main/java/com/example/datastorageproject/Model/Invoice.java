@@ -2,6 +2,7 @@ package com.example.datastorageproject.Model;
 
 import javax.persistence.*;
 import lombok.Data;
+import org.hibernate.annotations.Cascade;
 
 import java.util.List;
 
@@ -17,7 +18,7 @@ public class Invoice {
     @ManyToOne
     @JoinColumn(name = "employeeId")
     private Employee employee;
-    @OneToMany(mappedBy = "invoice")
+    @OneToMany(mappedBy = "invoice", cascade = CascadeType.REMOVE)
     private List<OrderPart> orderPartList;
     private String description;
     @ManyToOne

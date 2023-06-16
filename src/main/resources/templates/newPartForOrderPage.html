@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form th:action="@{/service/details/{id}(id=${invoiceId})}" method="get">
+  <div>
+    <button>Назад</button>
+  </div>
+</form>
+<form th:action="@{/service/details/{id}/new/(id=${invoiceId})}" method="post" th:object="${orderPart}">
+    <div class="select">
+        <label>Name</label>
+        <select th:field="*{part}">
+            <option th:each="p : ${partList}" th:value="${p.id()}" th:text="${p.name()}"></option>
+        </select>
+    </div>
+    <div class="form-row">
+        <label for="amount">Количество</label>
+        <input type="text" th:field="*{amount}" id="amount" placeholder="Количество">
+        <div style="color: red" th:if="${#fields.hasErrors('amount')}" th:errors="*{amount}">Amount error</div>
+    </div>
+
+    <button class="floating-button" type="submit">Подтвердить</button>
+</form>
+</body>
+</html>

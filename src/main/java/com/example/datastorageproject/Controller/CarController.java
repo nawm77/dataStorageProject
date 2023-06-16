@@ -45,6 +45,7 @@ public class CarController {
         if(errors.hasErrors()){
             return "editCar";
         }
+        System.out.println(car.getId());
         carService.updateCar(id, car);
         return "redirect:/cars";
     }

@@ -42,6 +42,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/cars/**").permitAll()
                 .antMatchers("/callback/list").hasAnyAuthority(Permission.ADMIN_PERMISSION_READ.getPermission(), Permission.EMPLOYEE_PERMISSION_READ.getPermission())
                 .antMatchers("/callback/delete/**").hasAnyAuthority(Permission.ADMIN_PERMISSION_READ.getPermission(), Permission.EMPLOYEE_PERMISSION_READ.getPermission())
+//                .antMatchers("/service/**").hasAnyAuthority(Permission.ADMIN_PERMISSION_READ.getPermission(), Permission.EMPLOYEE_PERMISSION_READ.getPermission())
                 .and()
                 .formLogin()
                 .loginPage("/auth/login")
