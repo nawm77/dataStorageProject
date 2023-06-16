@@ -1,7 +1,6 @@
 package com.example.datastorageproject.Configuration;
 
 import com.example.datastorageproject.Model.Permission;
-import com.example.datastorageproject.Model.Role;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
@@ -12,12 +11,9 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
@@ -42,6 +38,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/cars/**").permitAll()
                 .antMatchers("/callback/list").hasAnyAuthority(Permission.ADMIN_PERMISSION_READ.getPermission(), Permission.EMPLOYEE_PERMISSION_READ.getPermission())
                 .antMatchers("/callback/delete/**").hasAnyAuthority(Permission.ADMIN_PERMISSION_READ.getPermission(), Permission.EMPLOYEE_PERMISSION_READ.getPermission())
+                .antMatchers("/customer/list/**").hasAnyAuthority(Permission.ADMIN_PERMISSION_READ.getPermission(), Permission.EMPLOYEE_PERMISSION_READ.getPermission())
 //                .antMatchers("/service/**").hasAnyAuthority(Permission.ADMIN_PERMISSION_READ.getPermission(), Permission.EMPLOYEE_PERMISSION_READ.getPermission())
                 .and()
                 .formLogin()

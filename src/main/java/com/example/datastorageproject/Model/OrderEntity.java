@@ -18,5 +18,8 @@ public class OrderEntity {
     @ManyToOne
     @JoinColumn(name = "orderStatusId")
     private OrderStatus orderStatus;
+    @ManyToOne
+    @JoinColumn(name = "carId")
+    private Car car;
     private LocalDateTime deliveryDate;
 }

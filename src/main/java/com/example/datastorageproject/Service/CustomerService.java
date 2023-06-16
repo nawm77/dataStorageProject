@@ -1,5 +1,6 @@
 package com.example.datastorageproject.Service;
 
+import com.example.datastorageproject.DTO.CustomerCarInfoDTO;
 import com.example.datastorageproject.Model.Customer;
 import com.example.datastorageproject.Model.User;
 import com.example.datastorageproject.Repository.CustomerRepository;
@@ -8,6 +9,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class CustomerService {
@@ -35,5 +37,20 @@ public class CustomerService {
 
     public List<Customer> findAll(){
         return customerRepository.findAll();
+    }
+
+    public List<CustomerCarInfoDTO> getCarInfoDTO(){
+        List<CustomerCarInfoDTO> customerCarInfo = customerRepository.getCustomerCarInfo()
+                .stream()
+                .map(arr -> new CustomerCarInfoDTO(
+                        (String) arr[0],
+                        (String) arr[1],
+                        (String) arr[2],
+                        (String) arr[3],
+                        (String) arr[4],
+                        (String) arr[5],
+                        (String) arr[6]))
+                .collect(Collectors.toList());
+        return customerCarInfo;
     }
 }
