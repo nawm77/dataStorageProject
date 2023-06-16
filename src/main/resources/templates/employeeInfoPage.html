@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="/" method="get">
+  <div>
+    <button>Домой</button>
+  </div>
+</form>
+<div th:switch="${list}">
+  <h2 th:case="null">No info found</h2>
+  <div th:case="*">
+    <h2>Info</h2>
+    <table>
+      <thead>
+      <tr>
+        <th>Имя</th>
+        <th>Фамилия</th>
+        <th>Номер телефона</th>
+        <th>Почта</th>
+        <th>Должность</th>
+        <th>Зарплата</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="l : ${list}">
+        <td th:text="${l.name}"></td>
+        <td th:text="${l.lastname}"></td>
+        <td th:text="${l.phoneNumber}"></td>
+        <td th:text="${l.email}"></td>
+        <td th:text="${l.position.getPositionName()}"></td>
+        <td th:text="${l.salary}"></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+</body>
+</html>
