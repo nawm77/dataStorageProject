@@ -21,5 +21,4 @@ public record InvoiceDTO(Integer id, String description, Customer customer, Empl
                 ", orderPartList=" + orderPartList.stream().map(OrderPartMapper.INSTANCE::toDTO).toList() +
                 '}';
     }
-    /*TODO Подумать над тем, что должно быть в toString(нужна ли информация о машине, о сотруднике, о клиенте)*/
 }

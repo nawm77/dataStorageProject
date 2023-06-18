@@ -1,6 +1,7 @@
 package com.example.datastorageproject.Service;
 
 import com.example.datastorageproject.DTO.EmployeeDTO;
+import com.example.datastorageproject.DTO.EmployeeServiceDTO;
 import com.example.datastorageproject.Mapper.EmployeeMapper;
 import com.example.datastorageproject.Model.Employee;
 import com.example.datastorageproject.Repository.EmployeeRepository;
@@ -67,6 +68,18 @@ public class EmployeeService {
             Integer salary = (Integer) result[6];
             Integer positionId = (Integer) result[7];
             listResult.add(new EmployeeDTO(id, name, lastname, email, phoneNumber, positionRepository.getById(positionId), salary));
+        }
+        return listResult;
+    }
+
+    public List<EmployeeServiceDTO> getServiceInfo(){
+        List<EmployeeServiceDTO> listResult = new ArrayList<>();
+        for (Object[] result : employeeRepository.getEmployeeServiceInfo()) {
+            String name = (String) result[0];
+            String lastname = (String) result[1];
+            String phoneNumber = (String) result[2];
+            String description = (String) result[3];
+            listResult.add(new EmployeeServiceDTO(name, lastname, phoneNumber, description));
         }
         return listResult;
     }

@@ -4,6 +4,7 @@ import com.example.datastorageproject.Model.Employee;
 import com.example.datastorageproject.Model.Position;
 import com.example.datastorageproject.Model.Role;
 import com.example.datastorageproject.Repository.PositionRepository;
+import com.example.datastorageproject.Service.CustomerService;
 import com.example.datastorageproject.Service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -24,11 +25,13 @@ import java.util.List;
 public class AdminController {
     private final EmployeeService employeeService;
     private final PositionRepository positionRepository;
+    private final CustomerService customerService;
 
     @Autowired
-    public AdminController(EmployeeService employeeService, PositionRepository positionRepository) {
+    public AdminController(EmployeeService employeeService, PositionRepository positionRepository, CustomerService customerService) {
         this.employeeService = employeeService;
         this.positionRepository = positionRepository;
+        this.customerService = customerService;
     }
 
     @GetMapping("/")
@@ -83,5 +86,17 @@ public class AdminController {
     public String deleteEmployee(@PathVariable("id") Integer id){
         employeeService.deleteById(id);
         return "redirect:/admin/employee";
+    }
+
+    @GetMapping("/customer")
+    public String getCustomerList(Model model){
+        model.addAttribute("list", customerService.getCustomerDTO());
+        return "customerList";
+    }
+
+    @GetMapping("/customer/delete/{id}")
+    public String deleteCustomer(@PathVariable("id") Integer id){
+        customerService.deleteCustomerById(id);
+        return "customerList";
     }
 }

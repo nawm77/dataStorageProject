@@ -23,4 +23,10 @@ public class EmployeeController {
         model.addAttribute("list", employeeService.getEmployeeInfo());
         return "employeeInfoPage";
     }
+
+    @GetMapping("/service")
+    public String getServiceInfo(Model model){
+        model.addAttribute("list2", employeeService.getServiceInfo());
+        return "serviceInfoPage";
+    }
 }

@@ -81,7 +81,7 @@ public class ServiceController {
         System.out.println(id);
         System.out.println(orderPart.getPart().getId());
         System.out.println(orderPart.getAmount());
-//        serviceService.saveOrderPart(orderPart.getAmount(), id, orderPart.getPart().getId());
+        serviceService.saveOrderPart(orderPart.getAmount(), id, orderPart.getPart().getId());
         serviceService.saveNewOrderPart(orderPart);
 //        TODO сделать сервис для редактирования списка запчастей
         return "redirect:/service/details/{id}";

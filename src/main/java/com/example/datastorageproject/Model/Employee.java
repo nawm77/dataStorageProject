@@ -1,12 +1,9 @@
 package com.example.datastorageproject.Model;
 
-import javax.persistence.*;
-
-import com.example.datastorageproject.Repository.PositionRepository;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import org.springframework.beans.factory.annotation.Autowired;
 
+import javax.persistence.*;
 import java.util.List;
 
 @EqualsAndHashCode(callSuper = true)

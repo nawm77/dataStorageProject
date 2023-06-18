@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en"
-      xmlns:th="http://thymeleaf.org">
+      xmlns:th="http://thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Customers</title>
 </head>
 <body>
 <form action="/" method="get">
@@ -36,6 +37,7 @@
                 <td th:text="${l.make}"></td>
                 <td th:text="${l.model}"></td>
                 <td th:text="${l.carVinNumber}"></td>
+                <td><a sec:authorize="hasAnyAuthority('admin:write', 'employee:write')" th:href="@{/admin/customer/delete/{id}(id=${l.id})}">Delete customer</a></td>
             </tr>
             </tbody>
         </table>

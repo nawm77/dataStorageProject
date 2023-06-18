@@ -34,7 +34,7 @@
     <div class="form-row">
         <label>Машина</label>
         <select th:field="*{car}">
-            <option th:each="car : ${carList}" th:value="${car.getId()}" th:text="${car.getMake() + ' ' + car.getModel()}"></option>
+            <option th:each="car : ${carList}" th:value="${car.id()}" th:text="${car.make() + ' ' + car.model()}"></option>
         </select>
         <div style="color: red" th:if="${#fields.hasErrors('car')}" th:errors="*{car}">Car error</div>
     </div>
@@ -43,7 +43,6 @@
         <input type="text" th:field="*{description}" id="description" placeholder="Описание">
         <div style="color: red" th:if="${#fields.hasErrors('description')}" th:errors="*{description}">description error</div>
     </div>
-<!--    TODO Сделать функционал добавления позиций в список для сервиса-->
     <button class="floating-button" type="submit">Подтвердить</button>
 </form>
 </body>

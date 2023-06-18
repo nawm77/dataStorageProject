@@ -1,10 +1,9 @@
 package com.example.datastorageproject.Model;
 
-import javax.persistence.*;
-
 import lombok.Data;
 
-import java.util.List;
+import javax.persistence.*;
+import javax.validation.constraints.Email;
 
 @Data
 @MappedSuperclass
@@ -16,6 +15,7 @@ public class User {
     private String lastname;
     private String username;
     private String password;
+    @Email(message = "incorrect email")
     private String email;
     private String phoneNumber;
     @Column(name = "status")

@@ -1,5 +1,6 @@
 package com.example.datastorageproject.Service;
 
+import com.example.datastorageproject.DTO.CarDTO;
 import com.example.datastorageproject.DTO.OrderPartDTO;
 import com.example.datastorageproject.DTO.PartDTO;
 import com.example.datastorageproject.Mapper.OrderPartMapper;
@@ -46,7 +47,7 @@ public class ServiceService {
         return orderService.findAll();
     }
 
-    public List<Car> getCarList() {
+    public List<CarDTO> getCarList() {
         return carService.getAllCars();
     }
 

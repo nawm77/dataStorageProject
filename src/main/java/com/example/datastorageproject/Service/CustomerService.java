@@ -23,34 +23,38 @@ public class CustomerService {
     }
 
     public void addUser(User user){
-         Customer customer = new Customer();
-         customer.setPassword(passwordEncoder.encode(user.getPassword()));
-         customer.setRole(user.getRole());
-         customer.setStatus(user.getStatus());
-         customer.setUsername(user.getUsername());
-         customer.setName(user.getName());
-         customer.setEmail(user.getEmail());
-         customer.setLastname(user.getLastname());
-         customer.setPhoneNumber(user.getPhoneNumber());
-         customerRepository.save(customer);
+        Customer customer = new Customer();
+        customer.setPassword(passwordEncoder.encode(user.getPassword()));
+        customer.setRole(user.getRole());
+        customer.setStatus(user.getStatus());
+        customer.setUsername(user.getUsername());
+        customer.setName(user.getName());
+        customer.setEmail(user.getEmail());
+        customer.setLastname(user.getLastname());
+        customer.setPhoneNumber(user.getPhoneNumber());
+        customerRepository.save(customer);
     }
 
     public List<Customer> findAll(){
         return customerRepository.findAll();
     }
 
-    public List<CustomerCarInfoDTO> getCarInfoDTO(){
-        List<CustomerCarInfoDTO> customerCarInfo = customerRepository.getCustomerCarInfo()
+    public List<CustomerCarInfoDTO> getCustomerDTO(){
+        return customerRepository.getCustomerCarInfo()
                 .stream()
                 .map(arr -> new CustomerCarInfoDTO(
-                        (String) arr[0],
+                        Integer.parseInt(String.valueOf(arr[0])),
                         (String) arr[1],
                         (String) arr[2],
                         (String) arr[3],
                         (String) arr[4],
                         (String) arr[5],
-                        (String) arr[6]))
+                        (String) arr[6],
+                        (String) arr[7]))
                 .collect(Collectors.toList());
-        return customerCarInfo;
+    }
+
+    public void deleteCustomerById(Integer id){
+        customerRepository.deleteById(id);
     }
 }

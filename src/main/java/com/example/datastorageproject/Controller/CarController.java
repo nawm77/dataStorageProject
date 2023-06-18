@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/")
-public class CarController {
+public class  CarController {
     private final CarService carService;
 
     @Autowired
@@ -28,9 +28,13 @@ public class CarController {
 
     @GetMapping("/cars")
     public String getCarList(Model model){
-        model.addAttribute("cars", carService.getAllCars().stream()
-                .map(CarMapper.INSTANCE::toDTO)
-                .collect(Collectors.toList()));
+        model.addAttribute("cars", carService.getAllCars());
+        return "cars";
+    }
+
+    @GetMapping("/cars/available")
+    public String getAvailableCars(Model model){
+        model.addAttribute("cars", carService.getAvailableCars());
         return "cars";
     }
     @PreAuthorize("hasAnyAuthority('employee:write')")
@@ -70,4 +74,5 @@ public class CarController {
         carService.deleteCarById(id);
         return "redirect:/cars";
     }
+
 }
