@@ -9,7 +9,6 @@ import java.util.List;
 
 @Data
 @Entity
-/**Переменная price устанавливается только после подтверждения менеджера**/
 public class Car {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -40,4 +39,7 @@ public class Car {
     private List<TestDrive> testDriveList;
     @OneToMany(mappedBy = "car", cascade = CascadeType.ALL)
     private List<OrderEntity> orderEntityList;
+    @ManyToOne
+    @JoinColumn(name = "customerId")
+    private Customer customer;
 }

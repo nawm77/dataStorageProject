@@ -23,4 +23,5 @@ public interface CustomerRepository extends JpaRepository<Customer, Integer> {
 //            "DELETE FROM customer WHERE id = :customerId", nativeQuery = true)
 //    void deleteCustomerById(@Param("customerId") Integer customerId);
     void deleteById(Integer id);
+    Customer findCustomerByEmail(String email);
 }

@@ -1,11 +1,14 @@
 package com.example.datastorageproject.Controller;
 
-import com.example.datastorageproject.Model.Customer;
 import com.example.datastorageproject.Model.Role;
 import com.example.datastorageproject.Model.Status;
 import com.example.datastorageproject.Model.User;
 import com.example.datastorageproject.Service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,29 +25,33 @@ import javax.servlet.http.HttpServletResponse;
 public class AuthenticationController {
 
     private final CustomerService customerService;
+    private final AuthenticationManager authenticationManager;
 
     @Autowired
-    public AuthenticationController(CustomerService customerService) {
+    public AuthenticationController(CustomerService customerService, AuthenticationManager authenticationManager) {
         this.customerService = customerService;
+        this.authenticationManager = authenticationManager;
     }
 
     @GetMapping("/login")
-    public String getLoginPage(){
+    public String getLoginPage() {
         return "login";
     }
+
     @GetMapping("/success")
-    public String getSuccessPage(){
+    public String getSuccessPage() {
         return "success";
     }
+
     @PostMapping("/logout")
-    public String logout(HttpServletRequest request, HttpServletResponse response){
+    public String logout(HttpServletRequest request, HttpServletResponse response) {
         SecurityContextLogoutHandler securityContextLogoutHandler = new SecurityContextLogoutHandler();
         securityContextLogoutHandler.logout(request, response, null);
         return "redirect:/home";
     }
 
     @GetMapping("/reg")
-    public String getRegPage(Model model){
+    public String getRegPage(Model model) {
         model.addAttribute(new User());
         return "reg";
     }
@@ -55,6 +62,9 @@ public class AuthenticationController {
         user.setStatus(Status.ACTIVE);
         customerService.addUser(user);
         System.out.println(user);
-        return "redirect:/"; // Redirect to a success page or any other page you want
+        UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(user.getEmail(), user.getPassword());
+        Authentication authentication = authenticationManager.authenticate(authToken);
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+        return "redirect:/";
     }
 }

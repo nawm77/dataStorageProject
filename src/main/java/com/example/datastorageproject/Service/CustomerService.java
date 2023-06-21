@@ -1,8 +1,10 @@
 package com.example.datastorageproject.Service;
 
 import com.example.datastorageproject.DTO.CustomerCarInfoDTO;
+import com.example.datastorageproject.Model.Car;
 import com.example.datastorageproject.Model.Customer;
 import com.example.datastorageproject.Model.User;
+import com.example.datastorageproject.Repository.CarRepository;
 import com.example.datastorageproject.Repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -15,11 +17,13 @@ import java.util.stream.Collectors;
 public class CustomerService {
     private final CustomerRepository customerRepository;
     private final PasswordEncoder passwordEncoder;
+    private final CarRepository carRepository;
 
     @Autowired
-    public CustomerService(CustomerRepository customerRepository, PasswordEncoder passwordEncoder) {
+    public CustomerService(CustomerRepository customerRepository, PasswordEncoder passwordEncoder, CarRepository carRepository) {
         this.customerRepository = customerRepository;
         this.passwordEncoder = passwordEncoder;
+        this.carRepository = carRepository;
     }
 
     public void addUser(User user){
@@ -56,5 +60,12 @@ public class CustomerService {
 
     public void deleteCustomerById(Integer id){
         customerRepository.deleteById(id);
+    }
+
+    public Customer findCustomerByEmail(String email){
+        return customerRepository.findCustomerByEmail(email);
+    }
+    public List<Car> getCars(Integer customerId){
+        return carRepository.findCarByCustomer(customerRepository.getById(customerId));
     }
 }

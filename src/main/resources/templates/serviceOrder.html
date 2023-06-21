@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -11,18 +12,20 @@
         <button>Домой</button>
     </div>
 </form>
-<form action="/service/list" method="get">
+<form sec:authorize="hasAnyAuthority('employee:write')" action="/service/list" method="get">
     <div>
         <button>Список заявок</button>
     </div>
 </form>
 <form th:action="@{/service/}" method="post" th:object="${order}">
-    <div class="select">
-        <label>Клиент</label>
-        <select th:field="*{customer}">
-            <option th:each="c : ${customerList}" th:value="${c.getId()}" th:text="${c.getName() + ' ' + c.getLastname()}"></option>
-        </select>
-        <div style="color: red" th:if="${#fields.hasErrors('customer')}" th:errors="*{customer}">Role error</div>
+<!--    <div class="select">-->
+<!--        <label>Клиент</label>-->
+<!--        <select th:field="*{customer}">-->
+<!--            <option th:each="c : ${customerList}" th:value="${c.getId()}" th:text="${c.getName() + ' ' + c.getLastname()}"></option>-->
+<!--        </select>-->
+<!--        <div style="color: red" th:if="${#fields.hasErrors('customer')}" th:errors="*{customer}">Role error</div>-->
+<!--    </div>-->
+<!--        <div style="color: red" th:if="${#fields.hasErrors('customer')}" th:errors="*{customer}">Role error</div>-->
     </div>
     <div class="form-row">
         <label>Сотрудник</label>
@@ -34,7 +37,7 @@
     <div class="form-row">
         <label>Машина</label>
         <select th:field="*{car}">
-            <option th:each="car : ${carList}" th:value="${car.id()}" th:text="${car.make() + ' ' + car.model()}"></option>
+            <option th:each="car : ${carList}" th:value="${car.id}" th:text="${car.make + ' ' + car.model}"></option>
         </select>
         <div style="color: red" th:if="${#fields.hasErrors('car')}" th:errors="*{car}">Car error</div>
     </div>

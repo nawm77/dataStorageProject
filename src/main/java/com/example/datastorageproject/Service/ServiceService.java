@@ -6,12 +6,14 @@ import com.example.datastorageproject.DTO.PartDTO;
 import com.example.datastorageproject.Mapper.OrderPartMapper;
 import com.example.datastorageproject.Mapper.PartMapper;
 import com.example.datastorageproject.Model.*;
+import com.example.datastorageproject.Repository.CarRepository;
 import com.example.datastorageproject.Repository.InvoiceRepository;
 import com.example.datastorageproject.Repository.OrderPartRepository;
 import com.example.datastorageproject.Repository.PartRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.security.Principal;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -24,8 +26,9 @@ public class ServiceService {
     private final InvoiceRepository invoiceRepository;
     private final OrderPartRepository orderPartRepository;
     private final PartRepository partRepository;
+    private final CarRepository carRepository;
     @Autowired
-    public ServiceService(CustomerService customerService, EmployeeService employeeService, OrderService orderService, CarService carService, InvoiceRepository invoiceRepository, OrderPartRepository orderPartRepository, PartRepository partRepository) {
+    public ServiceService(CustomerService customerService, EmployeeService employeeService, OrderService orderService, CarService carService, InvoiceRepository invoiceRepository, OrderPartRepository orderPartRepository, PartRepository partRepository, CarRepository carRepository) {
         this.customerService = customerService;
         this.employeeService = employeeService;
         this.orderService = orderService;
@@ -33,6 +36,7 @@ public class ServiceService {
         this.invoiceRepository = invoiceRepository;
         this.orderPartRepository = orderPartRepository;
         this.partRepository = partRepository;
+        this.carRepository = carRepository;
     }
 
     public List<Customer> getCustomerList() {
@@ -94,5 +98,13 @@ public class ServiceService {
 
     public void saveNewOrderPart(OrderPart orderPart){
         orderPartRepository.save(orderPart);
+    }
+
+    public Customer findCustomerByEmail(String email){
+        return customerService.findCustomerByEmail(email);
+    }
+
+    public List<Car> getCustomerCars(Principal principal){
+        return carRepository.findCarByCustomer(customerService.findCustomerByEmail(principal.getName()));
     }
 }

@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.security.Principal;
+
 @Controller
 @RequestMapping("/service")
 public class ServiceController {
@@ -26,16 +28,18 @@ public class ServiceController {
     }
 
     @GetMapping("")
-    public String getServiceOrder(Model model){
+    public String getServiceOrder(Model model, Principal principal){
+        model.addAttribute("user", serviceService.findCustomerByEmail(principal.getName()));
         model.addAttribute("order", new Invoice());
         model.addAttribute("customerList", serviceService.getCustomerList());
         model.addAttribute("employeeList", serviceService.getEmployeeList());
         model.addAttribute("orderList", serviceService.getOrderList());
-        model.addAttribute("carList", serviceService.getCarList());
+        model.addAttribute("carList", serviceService.getCustomerCars(principal));
         return "serviceOrder";
     }
     @PostMapping("/")
-    public String saveOrder(Invoice invoice){
+    public String saveOrder(Invoice invoice, Principal principal){
+        invoice.setCustomer(serviceService.findCustomerByEmail(principal.getName()));
         serviceService.saveInvoice(invoice);
         return "redirect:/";
     }
@@ -61,8 +65,6 @@ public class ServiceController {
 
     @GetMapping("/details/{id}/delete/{partId}")
     public String deletePart(@PathVariable("id") Integer id, @PathVariable("partId") Integer partId){
-        System.out.println(id);
-        System.out.println(partId);
         serviceService.deletePart(id, partId);
         return "redirect:/service/details/{id}";
     }
@@ -82,8 +84,7 @@ public class ServiceController {
         System.out.println(orderPart.getPart().getId());
         System.out.println(orderPart.getAmount());
         serviceService.saveOrderPart(orderPart.getAmount(), id, orderPart.getPart().getId());
-        serviceService.saveNewOrderPart(orderPart);
-//        TODO сделать сервис для редактирования списка запчастей
+//        serviceService.saveNewOrderPart(orderPart);
         return "redirect:/service/details/{id}";
     }
 }

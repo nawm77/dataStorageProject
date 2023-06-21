@@ -18,4 +18,6 @@ public class Customer extends User {
     private List<TestDrive> testDriveLists;
     @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
     private List<Invoice> invoiceList;
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
+    private List<Car> carList;
 }
