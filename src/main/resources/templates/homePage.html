@@ -3,7 +3,7 @@
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Home</title>
     <link rel="stylesheet" type="text/css" href="../static/homePageStyle.css">
 </head>
 <body>
@@ -19,6 +19,11 @@
     <form action="/service" method="get">
         <div>
             <button>Записаться на ТО</button>
+        </div>
+    </form>
+    <form sec:authorize="hasAnyAuthority('employee:write')" action="/orders/list" method="get">
+        <div>
+            <button>Список заказов</button>
         </div>
     </form>
     <form action="/testdrive" method="get">

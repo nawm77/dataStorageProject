@@ -43,6 +43,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/customer/list/**").hasAnyAuthority(Permission.ADMIN_PERMISSION_READ.getPermission(), Permission.EMPLOYEE_PERMISSION_READ.getPermission())
                 .antMatchers("/service/**").authenticated()
                 .antMatchers("/testdrive/**").authenticated()
+                .antMatchers("/orders/**").hasAnyAuthority(Permission.ADMIN_PERMISSION_READ.getPermission(), Permission.EMPLOYEE_PERMISSION_READ.getPermission())
                 .and()
                 .formLogin()
                 .loginPage("/auth/login")
@@ -71,7 +72,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+    protected void configure(AuthenticationManagerBuilder auth) {
         auth.authenticationProvider(daoAuthenticationProvider());
     }
 

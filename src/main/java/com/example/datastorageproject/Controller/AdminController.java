@@ -60,8 +60,8 @@ public class AdminController {
         if (errors.hasErrors()){
             return "editEmployee";
         }
-        System.out.println(employee.getPosition());
-        employeeService.saveEmployee(employee);
+//        employeeService.saveEmployee(employee);
+        employeeService.update(employee, id);
         return "redirect:/admin/employee";
     }
 

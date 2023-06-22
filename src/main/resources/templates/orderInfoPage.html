@@ -1,13 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Order info</title>
 </head>
 <body>
 <form action="/" method="get">
   <div>
     <button>Домой</button>
+  </div>
+</form>
+<form action="/orders/new" method="get">
+  <div>
+    <button>Создать новый заказ</button>
   </div>
 </form>
 <div th:switch="${list}">
@@ -29,6 +36,7 @@
         <td th:text="${l.model()}"></td>
         <td th:text="${l.carVinNumber()}"></td>
         <td th:text="${l.description()}"></td>
+        <td><a sec:authorize="hasAnyAuthority('admin:write', 'employee:write')" th:href="@{/orders/delete/{id}/(id=${l.id})}">Delete order</a></td>
       </tbody>
     </table>
   </div>

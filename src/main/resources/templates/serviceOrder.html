@@ -4,7 +4,7 @@
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Service order</title>
 </head>
 <body>
 <form action="/" method="get">
@@ -18,14 +18,6 @@
     </div>
 </form>
 <form th:action="@{/service/}" method="post" th:object="${order}">
-<!--    <div class="select">-->
-<!--        <label>Клиент</label>-->
-<!--        <select th:field="*{customer}">-->
-<!--            <option th:each="c : ${customerList}" th:value="${c.getId()}" th:text="${c.getName() + ' ' + c.getLastname()}"></option>-->
-<!--        </select>-->
-<!--        <div style="color: red" th:if="${#fields.hasErrors('customer')}" th:errors="*{customer}">Role error</div>-->
-<!--    </div>-->
-<!--        <div style="color: red" th:if="${#fields.hasErrors('customer')}" th:errors="*{customer}">Role error</div>-->
     </div>
     <div class="form-row">
         <label>Сотрудник</label>

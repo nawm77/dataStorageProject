@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>New order</title>
+</head>
+<body>
+<form action="/" method="get">
+  <div>
+    <button>Домой</button>
+  </div>
+</form>
+<form th:action="@{/orders/new/}" method="post" th:object="${order}">
+  <div class="form-row">
+    <label>Машина</label>
+    <select th:field="*{car}">
+      <option th:each="car : ${carList}" th:value="${car.id}" th:text="${car.make + ' ' + car.model}"></option>
+    </select>
+    <div style="color: red" th:if="${#fields.hasErrors('car')}" th:errors="*{car}">Car error</div>
+  </div>
+  <div class="form-row">
+    <label>Покупатель</label>
+    <select th:field="*{customer}">
+      <option th:each="customer : ${customerList}" th:value="${customer.id}" th:text="${customer.name + ' ' + customer.lastname}"></option>
+    </select>
+    <div style="color: red" th:if="${#fields.hasErrors('customer')}" th:errors="*{customer}">Ошибка покупателя</div>
+  </div>
+  <div class="form-row">
+    <label>Статус заказа</label>
+    <select th:field="*{orderStatus}">
+      <option th:each="status : ${orderStatus}" th:value="${status.id}" th:text="${status.description}"></option>
+    </select>
+    <div style="color: red" th:if="${#fields.hasErrors('orderStatus')}" th:errors="*{orderStatus}">Ошибка статуса заказа</div>
+  </div>
+  <div>
+    <label for="date">Выберите дату:</label>
+    <input type="datetime-local" id="date" name="date" th:field="${order.deliveryDate}" />
+  </div>
+  <button class="floating-button" type="submit">Подтвердить</button>
+</form>
+</body>
+</html>

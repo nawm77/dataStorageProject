@@ -12,6 +12,6 @@ import java.util.List;
 public interface OrderRepository extends JpaRepository<OrderEntity, Integer> {
 
     @Modifying
-    @Query("SELECT oe.car.make, oe.car.model, oe.car.carVinNumber, os.description FROM OrderEntity oe JOIN OrderStatus os on os.id = oe.orderStatus.id")
+    @Query("SELECT oe.car.make, oe.car.model, oe.car.carVinNumber, os.description, oe.id FROM OrderEntity oe JOIN OrderStatus os on os.id = oe.orderStatus.id")
     List<Object[]> getOrderCarInfo();
 }

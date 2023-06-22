@@ -17,4 +17,8 @@ public interface CarRepository extends JpaRepository<Car, Integer> {
     List<Object[]> getAvailableCars();
     List<Car> findCarByCustomer(Customer customer);
     List<Car> findCarByIsAvailable(Boolean isAvailable);
+
+    @Query(value = "SELECT c.id, c.make, c.model, c.horse_power, c.fuel, c.color, c.price, c.car_vin_number, c.is_produced, c.is_available, c.is_new, CASE WHEN i.id IS NOT NULL THEN 'Yes' ELSE 'No' END AS isInService FROM Car c LEFT JOIN invoice i on i.car_id = c.id WHERE c.is_available=true", nativeQuery = true)
+    @Modifying
+    List<Object[]> getCarsWithServiceStatus();
 }

@@ -72,4 +72,9 @@ public class  CarController {
         return "redirect:/cars";
     }
 
+    @GetMapping("/cars/status")
+    public String getNotRepairedCars(Model model){
+        model.addAttribute("cars", carService.getAllCarsWithServiceInfo());
+        return "carsWithInfoService";
+    }
 }

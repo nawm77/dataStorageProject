@@ -1,29 +1,12 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+<html lang="en"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
-    <title>Cars</title>
+    <title>Cars with status</title>
 </head>
 <body>
-<form action="/" method="get">
-  <div>
-    <button>Домой</button>
-  </div>
-</form>
-<div>
-  <form sec:authorize="hasAnyAuthority('admin:write', 'employee:write')" action="/cars/new" method="get">
-    <div>
-      <button>Добавить новую машину</button>
-    </div>
-  </form>
-</div>
-<form action="/cars/status" method="get">
-  <div>
-    <button>Список авто со статусом</button>
-  </div>
-</form>
 <div th:switch="${cars}">
   <h2 th:case="null">No cars found</h2>
   <div th:case="*">
@@ -38,6 +21,7 @@
         <th>Цвет</th>
         <th>Цена</th>
         <th sec:authorize="hasAnyAuthority('admin:write', 'employee:write')">VIN</th>
+        <th>Была в сервисе</th>
       </tr>
       </thead>
       <tbody>
@@ -49,8 +33,7 @@
         <td th:text="${car.color}"></td>
         <td th:text="${car.price}"></td>
         <td sec:authorize="hasAnyAuthority('admin:write', 'employee:write')" th:text="${car.carVinNumber}"></td>
-        <td><a sec:authorize="hasAnyAuthority('admin:write', 'employee:write')" th:href="@{cars/update/{id}(id=${car.id})}">Update</a></td>
-        <td><a sec:authorize="hasAnyAuthority('admin:write', 'employee:write')" th:href="@{cars/delete/{id}(id=${car.id})}">Delete</a></td>
+        <td th:text="${car.status}"></td>
       </tr>
       </tbody>
     </table>

@@ -4,6 +4,7 @@ import com.example.datastorageproject.DTO.EmployeeDTO;
 import com.example.datastorageproject.DTO.EmployeeServiceDTO;
 import com.example.datastorageproject.Mapper.EmployeeMapper;
 import com.example.datastorageproject.Model.Employee;
+import com.example.datastorageproject.Model.Status;
 import com.example.datastorageproject.Repository.EmployeeRepository;
 import com.example.datastorageproject.Repository.PositionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,36 +28,31 @@ public class EmployeeService {
         this.positionRepository = positionRepository;
     }
 
-    public List<EmployeeDTO> getEmployee(){
+    public List<EmployeeDTO> getEmployee() {
         List<Employee> employees = employeeRepository.findAll();
         return employees.stream()
                 .map(EmployeeMapper.INSTANCE::toDTO)
                 .collect(Collectors.toList());
     }
 
-    public Employee getEmployeeById(Integer id){
+    public Employee getEmployeeById(Integer id) {
         return employeeRepository.getById(id);
     }
 
-    public void updateEmployee(Integer id, Employee employee){
-        employeeRepository.deleteById(id);
-        employee.setId(id);
-        employeeRepository.save(employee);
-    }
-
-    public void saveEmployee(Employee employee){
+    public void saveEmployee(Employee employee) {
         employee.setPassword(passwordEncoder.encode(employee.getPassword()));
         employeeRepository.save(employee);
     }
 
-    public void deleteById(Integer id){
+    public void deleteById(Integer id) {
         employeeRepository.deleteById(id);
     }
-    public List<Employee> findAll(){
+
+    public List<Employee> findAll() {
         return employeeRepository.findAll();
     }
 
-    public List<EmployeeDTO> getEmployeeInfo(){
+    public List<EmployeeDTO> getEmployeeInfo() {
         List<EmployeeDTO> listResult = new ArrayList<>();
         for (Object[] result : employeeRepository.getEmployeeInfo()) {
             Integer id = (Integer) result[0];
@@ -72,7 +68,7 @@ public class EmployeeService {
         return listResult;
     }
 
-    public List<EmployeeServiceDTO> getServiceInfo(){
+    public List<EmployeeServiceDTO> getServiceInfo() {
         List<EmployeeServiceDTO> listResult = new ArrayList<>();
         for (Object[] result : employeeRepository.getEmployeeServiceInfo()) {
             String name = (String) result[0];
@@ -82,5 +78,15 @@ public class EmployeeService {
             listResult.add(new EmployeeServiceDTO(name, lastname, phoneNumber, description));
         }
         return listResult;
+    }
+
+    public void update(Employee employee, Integer id) {
+        employee.setStatus(Status.ACTIVE);
+        if (employeeRepository.getById(id).getPassword().equals(employee.getPassword())) {
+            employeeRepository.update(employee.getEmail(), employee.getLastname(), employee.getName(), employee.getPassword(), employee.getPhoneNumber(), employee.getRole().toString(), employee.getStatus().toString(), employee.getUsername(), employee.getSalary(), employee.getPosition().getId(), id);
+        } else {
+            employee.setPassword(passwordEncoder.encode(employee.getPassword()));
+            employeeRepository.update(employee.getEmail(), employee.getLastname(), employee.getName(), employee.getPassword(), employee.getPhoneNumber(), employee.getRole().toString(), employee.getStatus().toString(), employee.getUsername(), employee.getSalary(), employee.getPosition().getId(), id);
+        }
     }
 }
