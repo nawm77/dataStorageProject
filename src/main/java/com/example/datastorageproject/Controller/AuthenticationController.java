@@ -61,7 +61,6 @@ public class AuthenticationController {
         user.setRole(Role.CUSTOMER);
         user.setStatus(Status.ACTIVE);
         customerService.addUser(user);
-        System.out.println(user);
         UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(user.getEmail(), user.getPassword());
         Authentication authentication = authenticationManager.authenticate(authToken);
         SecurityContextHolder.getContext().setAuthentication(authentication);

@@ -80,11 +80,7 @@ public class ServiceController {
     @PostMapping("/details/{id}/new")
     public String addNewPart(@PathVariable("id") Integer id, OrderPart orderPart){
         orderPart.setInvoice(invoiceRepository.getById(id));
-        System.out.println(id);
-        System.out.println(orderPart.getPart().getId());
-        System.out.println(orderPart.getAmount());
         serviceService.saveOrderPart(orderPart.getAmount(), id, orderPart.getPart().getId());
-//        serviceService.saveNewOrderPart(orderPart);
         return "redirect:/service/details/{id}";
     }
 }

@@ -1,6 +1,5 @@
 package com.example.datastorageproject.Controller;
 
-import com.example.datastorageproject.Mapper.CarMapper;
 import com.example.datastorageproject.Model.Car;
 import com.example.datastorageproject.Service.CarService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +13,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.validation.Valid;
-import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/")
@@ -49,7 +47,6 @@ public class  CarController {
         if(errors.hasErrors()){
             return "editCar";
         }
-        System.out.println(car.getId());
         carService.updateCar(id, car);
         return "redirect:/cars";
     }

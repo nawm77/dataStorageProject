@@ -49,7 +49,6 @@ public class AdminController {
     public String getEmployeeEditPage(@PathVariable("id") Integer id, Model model) {
         List<Enum> roleList = List.of(Role.ADMIN, Role.CUSTOMER, Role.EMPLOYEE);
         List<Position> positionList = positionRepository.findAll();
-        System.out.println(positionList);
         model.addAttribute("positionList", positionList);
         model.addAttribute("roleList", roleList);
         model.addAttribute("employee", employeeService.getEmployeeById(id));
@@ -76,7 +75,6 @@ public class AdminController {
 
     @PostMapping("/employee/new")
     public String addEmployee(Employee employee){
-        System.out.println(employee.getId());
         employee.setPosition(positionRepository.getById(0));
         employeeService.saveEmployee(employee);
         return "redirect:/admin/employee";
