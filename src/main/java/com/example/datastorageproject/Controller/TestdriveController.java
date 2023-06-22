@@ -78,6 +78,4 @@ public class TestdriveController {
         testDriveService.deleteById(id);
         return "redirect:/testdrive/" + customerId;
     }
-    //TODO сделать страницу, где будет выводиться информация о тест драйве для конкретного пользователя
-
 }
