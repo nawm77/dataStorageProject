@@ -16,4 +16,5 @@ public interface CarRepository extends JpaRepository<Car, Integer> {
     @Modifying
     List<Object[]> getAvailableCars();
     List<Car> findCarByCustomer(Customer customer);
+    List<Car> findCarByIsAvailable(Boolean isAvailable);
 }

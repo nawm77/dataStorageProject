@@ -13,7 +13,7 @@ import java.util.Optional;
 public interface CustomerRepository extends JpaRepository<Customer, Integer> {
     Boolean existsByEmail(String email);
     Optional<Customer> findByEmail(String email);
-    @Query("SELECT c.id, c.name, c.lastname, c.phoneNumber, c.email, car.make, car.model, car.carVinNumber FROM Customer c JOIN c.orderList o JOIN o.car car")
+    @Query(value = "SELECT c.id, c.name, c.lastname, c.phone_number, c.email, car.make, car.model, car.car_vin_number FROM Customer c JOIN car on car.customer_id = c.id ORDER BY c.phone_number", nativeQuery = true)
     @Modifying
     List<Object[]> getCustomerCarInfo();
 

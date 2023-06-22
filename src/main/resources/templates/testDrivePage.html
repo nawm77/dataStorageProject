@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="/" method="get">
+    <div>
+        <button>Домой</button>
+    </div>
+</form>
+<form sec:authorize="hasAnyAuthority('employee:write')" action="/testdrive/list" method="get">
+    <div>
+        <button>Список заявок</button>
+    </div>
+</form>
+<form th:action="@{/testdrive/}" method="post" th:object="${testdrive}">
+    <div class="form-row">
+        <label>Машина</label>
+        <select th:field="*{car}">
+            <option th:each="car : ${carList}" th:value="${car.getId()}" th:text="${car.make + ' ' + car.model}"></option>
+        </select>
+        <div style="color: red" th:if="${#fields.hasErrors('car')}" th:errors="*{car}">Car error</div>
+    </div>
+    <div>
+        <label for="date">Выберите дату:</label>
+        <input type="datetime-local" id="date" name="date" th:field="${testdrive.dateTime}" />
+    </div>
+    <div class="form-row">
+        <label>Сотрудник</label>
+        <select th:field="*{employee}">
+            <option th:each="e : ${employeeList}" th:value="${e.getId()}" th:text="${e.getName() + ' ' + e.getLastname()}"></option>
+        </select>
+        <div style="color: red" th:if="${#fields.hasErrors('employee')}" th:errors="*{employee}">Employee error</div>
+    </div>
+    <button class="floating-button" type="submit">Подтвердить</button>
+</form>
+</body>
+</html>

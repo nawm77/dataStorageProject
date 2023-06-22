@@ -59,4 +59,8 @@ public class CarService {
                         Boolean.valueOf(String.valueOf(e[10]))
                 )).collect(Collectors.toList());
     }
+
+    public List<Car> findAvailableCar(){
+        return carRepository.findCarByIsAvailable(true);
+    }
 }

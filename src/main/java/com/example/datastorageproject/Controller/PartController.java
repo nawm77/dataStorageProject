@@ -19,7 +19,7 @@ public class PartController {
 
     @GetMapping("/")
     public String getAllParts(Model model){
-        model.addAttribute("parts", partService.getAllParts());
+        model.addAttribute("parts", partService.getAllPartsDTO());
         return "partList";
     }
 }

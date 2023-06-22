@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title>Part list</title>
@@ -11,26 +13,24 @@
   </div>
 </form>
 <div th:switch="${parts}">
-  <h2 th:case="null">No invoices found</h2>
+  <h2 th:case="null">No parts found</h2>
   <div th:case="*">
-    <h2>Invoice</h2>
+    <h2>Parts</h2>
     <table>
       <thead>
       <tr>
-        <th>Клиент</th>
-        <th>Сотрудник</th>
-        <th>Описание</th>
-        <th>VIN номер машины</th>
+        <th>Артикул</th>
+        <th>Название</th>
+        <th>Доступное количество</th>
+        <th>Цена</th>
       </tr>
       </thead>
       <tbody>
-      <tr th:each="i : ${invoiceList}">
-        <td th:text="${i.customer.getName() + ' ' + i.customer.getLastname()}"></td>
-        <td th:text="${i.employee.getName() + ' ' + i.employee.getLastname()}"></td>
-        <td th:text="${i.description}"></td>
-        <td th:text="${i.getCar().getCarVinNumber()}"></td>
-        <td><a sec:authorize="hasAnyAuthority('admin:write', 'employee:write')" th:href="@{/service/delete/{id}(id=${i.id})}">Delete</a></td>
-        <td><a sec:authorize="hasAnyAuthority('admin:write', 'employee:write')" th:href="@{/service/details/{id}(id=${i.id})}">View details</a></td>
+      <tr th:each="p : ${parts}">
+        <td th:text="${p.id}"></td>
+        <td th:text="${p.name}"></td>
+        <td th:text="${p.availableCount}"></td>
+        <td th:text="${p.price}"></td>
       </tr>
       </tbody>
     </table>
