@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Callback form</title>
+</head>
+<body>
+<form action="/" method="get">
+    <div>
+        <button>Домой</button>
+    </div>
+</form>
+<div>
+    <form sec:authorize="hasAnyAuthority('admin:write', 'employee:write')" action="/callback/list" method="get">
+        <div>
+            <button>Посмотреть список заявок</button>
+        </div>
+    </form>
+</div>
+<form th:action="@{/callback/send/}" method="post" th:object="${callback}">
+    <div class="form-row">
+        <label for="name">Имя</label>
+        <input type="text" th:field="*{name}" id="name" placeholder="Имя">
+        <div style="color: red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name error</div>
+    </div>
+    <div class="form-row">
+        <label for="number">Номер телефона</label>
+        <input type="text" th:field="*{number}" id="number" placeholder="Номер телефона">
+        <div style="color: red" th:if="${#fields.hasErrors('number')}" th:errors="*{number}">Number error</div>
+    </div>
+    <div class="form-row">
+        <label for="message">Сообщение</label>
+        <input type="text" th:field="*{message}" id="message" placeholder="Сообщение">
+        <div style="color: red" th:if="${#fields.hasErrors('message')}" th:errors="*{message}">Message error</div>
+    </div>
+    <button class="floating-button" type="submit">Подтвердить</button>
+</form>
+</body>
+</html>

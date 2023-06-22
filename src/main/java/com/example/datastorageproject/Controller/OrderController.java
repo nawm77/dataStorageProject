@@ -1,17 +1,14 @@
 package com.example.datastorageproject.Controller;
 
-import com.example.datastorageproject.DTO.OrderDTO;
-import com.example.datastorageproject.Model.OrderEntity;
 import com.example.datastorageproject.Service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.util.List;
-
-@RestController
-@RequestMapping("/p")
+@Controller
+@RequestMapping("/orders")
 public class OrderController {
     private final OrderService orderService;
 
@@ -19,17 +16,9 @@ public class OrderController {
     public OrderController(OrderService orderService) {
         this.orderService = orderService;
     }
-    @GetMapping("/")
-    public List<OrderDTO> get(){
-        return orderService.getOrders();
-    }
-
-    @PostMapping("/")
-    public ResponseEntity<String> save(@RequestParam("id") Integer id, String s){
-        OrderEntity order = new OrderEntity();
-        /*TODO спроектировать формат запроса на сохранение заказа для */
-//        order.setOrderStatus(id);
-        orderService.saveOrder(order);
-        return new ResponseEntity<>(HttpStatus.OK);
+    @GetMapping("/list")
+    public String getInfo(Model model){
+        model.addAttribute("list", orderService.getInfo());
+        return "orderInfoPage";
     }
 }

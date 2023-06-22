@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -12,17 +13,42 @@
 <div>
     <form action="/cars" method="get">
         <div>
-            <button>Посмотреть список всех машин</button>
+            <button>Посмотреть список доступных машин</button>
         </div>
     </form>
-    <form>
+    <form action="/service" method="get">
         <div>
             <button>Записаться на ТО</button>
         </div>
     </form>
-    <form>
+    <form action="/testdrive" method="get">
+        <div>
+            <button>Записаться на Тест драйв</button>
+        </div>
+    </form>
+    <form action="/callback/" method="get">
         <div>
             <button type="submit">Заказать обратный звонок</button>
+        </div>
+    </form>
+    <form th:if="${#authorization.expression('isAuthenticated()')}" action="/auth/logout" method="post">
+        <div>
+            <button type="submit">Выйти из аккаунта</button>
+        </div>
+    </form>
+    <form th:unless="${#authorization.expression('isAuthenticated()')}" action="/auth/login" method="get">
+        <div>
+            <button>Войти в аккаунт</button>
+        </div>
+    </form>
+    <form th:unless="${#authorization.expression('isAuthenticated()')}" action="/auth/reg" method="get">
+        <div>
+            <button>Зарегестрироваться</button>
+        </div>
+    </form>
+    <form sec:authorize="hasAnyAuthority('admin:write')" action="/admin" method="get">
+        <div>
+            <button>Панель администратора</button>
         </div>
     </form>
 </div>

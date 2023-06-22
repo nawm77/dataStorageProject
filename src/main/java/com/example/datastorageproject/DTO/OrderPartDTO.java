@@ -10,7 +10,6 @@ public record OrderPartDTO(Integer id, Integer amount, Part part, Invoice invoic
                 "id=" + id +
                 ", amount=" + amount +
                 ", part=" + part.getName() +
-                ", invoice=" + invoice.getDescription() +
                 '}';
     }
 }

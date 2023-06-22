@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Customers</title>
+</head>
+<body>
+<form action="/" method="get">
+    <div>
+        <button>Домой</button>
+    </div>
+</form>
+<div th:switch="${list}">
+    <h2 th:case="null">No info found</h2>
+    <div th:case="*">
+        <h2>Info</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>Имя</th>
+                <th>Фамилия</th>
+                <th>Номер телефона</th>
+                <th>Почта</th>
+                <th>Марка машины</th>
+                <th>Модель машины</th>
+                <th>VIN номер машины</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="l : ${list}">
+                <td th:text="${l.name}"></td>
+                <td th:text="${l.lastname}"></td>
+                <td th:text="${l.phoneNumber}"></td>
+                <td th:text="${l.email}"></td>
+                <td th:text="${l.make}"></td>
+                <td th:text="${l.model}"></td>
+                <td th:text="${l.carVinNumber}"></td>
+                <td><a sec:authorize="hasAnyAuthority('admin:write', 'employee:write')" th:href="@{/admin/customer/delete/{id}(id=${l.id})}">Delete customer</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>

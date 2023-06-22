@@ -1,6 +1,6 @@
 package com.example.datastorageproject.Model;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 import lombok.Data;
 
 import java.util.List;
@@ -12,8 +12,14 @@ public class Position {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String positionName;
-    private Integer salary;
     @OneToMany(mappedBy = "position", cascade = CascadeType.ALL)
     private List<Employee> employeeList;
 
+    @Override
+    public String toString() {
+        return "Position{" +
+                "id=" + id +
+                ", positionName='" + positionName +
+                '}';
+    }
 }

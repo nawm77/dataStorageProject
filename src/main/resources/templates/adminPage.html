@@ -2,9 +2,39 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Admin</title>
+    <link rel="stylesheet" type="text/css" href="../static/homePageStyle.css">
 </head>
 <body>
-
+<header>
+    <h1>Панель администратора</h1>
+</header>
+<div>
+    <form action="/cars" method="get">
+        <div>
+            <button>Список всех машин</button>
+        </div>
+    </form>
+    <form action="/" method="get">
+        <div>
+            <button>Домой</button>
+        </div>
+    </form>
+    <form action="/callback/list" method="get">
+        <div>
+            <button>Список заявок</button>
+        </div>
+    </form>
+    <form action="/admin/employee" method="get">
+        <div>
+            <button>Список всех работников</button>
+        </div>
+    </form>
+    <form action="/admin/customer" method="get">
+        <div>
+            <button>Список всех клиентов</button>
+        </div>
+    </form>
+</div>
 </body>
 </html>

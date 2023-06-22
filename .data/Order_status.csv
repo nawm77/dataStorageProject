@@ -1,0 +1,5 @@
+statusId;description
+0;Order accepted
+1;In production
+2;In delivery
+3;Delivered

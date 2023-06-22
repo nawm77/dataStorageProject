@@ -1,6 +1,6 @@
 package com.example.datastorageproject.Model;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 import lombok.Data;
 
 import java.time.LocalDateTime;
@@ -18,7 +18,8 @@ public class OrderEntity {
     @ManyToOne
     @JoinColumn(name = "orderStatusId")
     private OrderStatus orderStatus;
-    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
-    private List<Car> carList;
+    @ManyToOne
+    @JoinColumn(name = "carId")
+    private Car car;
     private LocalDateTime deliveryDate;
 }

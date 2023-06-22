@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Part list</title>
+</head>
+<body>
+<form action="/" method="get">
+  <div>
+    <button>Домой</button>
+  </div>
+</form>
+<div th:switch="${parts}">
+  <h2 th:case="null">No parts found</h2>
+  <div th:case="*">
+    <h2>Parts</h2>
+    <table>
+      <thead>
+      <tr>
+        <th>Артикул</th>
+        <th>Название</th>
+        <th>Доступное количество</th>
+        <th>Цена</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="p : ${parts}">
+        <td th:text="${p.id}"></td>
+        <td th:text="${p.name}"></td>
+        <td th:text="${p.availableCount}"></td>
+        <td th:text="${p.price}"></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+</body>
+</html>

@@ -1,5 +1,7 @@
 package com.example.datastorageproject.Security;
 
+import com.example.datastorageproject.Model.Status;
+import com.example.datastorageproject.Model.User;
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -13,8 +15,8 @@ public class SecurityUser implements UserDetails {
     private final String username;
     private final String password;
     private final List<SimpleGrantedAuthority> authorities;
-    private final Boolean isActive;
-    private final UserDetailsService
+    private final boolean isActive;
+    private UserDetailsServiceImpl userDetailsService;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -22,22 +24,42 @@ public class SecurityUser implements UserDetails {
     }
 
     @Override
+    public String getPassword() {
+        return password;
+    }
+
+    @Override
+    public String getUsername() {
+        return username;
+    }
+
+    @Override
     public boolean isAccountNonExpired() {
-        return false;
+        return isActive;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return false;
+        return isActive;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return false;
+        return isActive;
     }
 
     @Override
     public boolean isEnabled() {
-        return false;
+        return isActive;
+    }
+    public static UserDetails fromUser(User user) {
+        return new org.springframework.security.core.userdetails.User(
+                user.getEmail(), user.getPassword(),
+                user.getStatus().equals(Status.ACTIVE),
+                user.getStatus().equals(Status.ACTIVE),
+                user.getStatus().equals(Status.ACTIVE),
+                user.getStatus().equals(Status.ACTIVE),
+                user.getRole().getAuthorities()
+        );
     }
 }

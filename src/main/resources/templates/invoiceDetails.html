@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="/" method="get">
+    <div>
+        <button>Домой</button>
+    </div>
+</form>
+<div th:switch="${invoiceParts}">
+    <h2 th:case="null">No details found</h2>
+    <div th:case="*">
+        <h2>Invoice details</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>Название детали</th>
+                <th>Количество</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="i : ${invoiceParts}">
+                <td th:text="${i.part().getName()}"></td>
+                <td th:text="${i.amount()}"></td>
+                <td><a sec:authorize="hasAnyAuthority('admin:write', 'employee:write')" th:href="@{/service/details/{id}/delete/{partId}(id=${invoiceId}, partId=${i.part().getId()})}">Delete part</a></td>
+<!--                <td><a sec:authorize="hasAnyAuthority('admin:write', 'employee:write')" th:href="@{/callback/delete/{id}(id=${call.id})}">Delete</a></td>-->
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <form th:action="@{/service/details/{id}/new(id=${invoiceId})}" method="get">
+        <div>
+            <button>Добавить новую деталь</button>
+        </div>
+    </form>
+</div>
+</body>
+</html>

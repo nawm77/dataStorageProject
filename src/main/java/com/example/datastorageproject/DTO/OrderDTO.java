@@ -12,7 +12,6 @@ public record OrderDTO(Integer id, LocalDateTime deliveryDate, Customer customer
                 "id=" + id +
                 ", deliveryDate=" + deliveryDate +
                 ", customerName=" + customer.getName() +
-                ", customerSurname=" + customer.getSurname() +
                 ", customerPhoneNumber=" + customer.getPhoneNumber() +
                 ", customerEmail=" + customer.getEmail() +
                 ", orderStatus=" + orderStatus.getDescription() +

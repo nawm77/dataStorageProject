@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="/" method="get">
+    <div>
+        <button>Домой</button>
+    </div>
+</form>
+<div th:switch="${list}">
+    <h2 th:case="null">No test drives found</h2>
+    <div th:case="*">
+        <h2>Test drive</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>Машина</th>
+                <th>Сотрудник</th>
+                <th>Время</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="l : ${list}">
+                <td th:text="${l.car.getMake() + ' ' + l.car.getModel}"></td>
+                <td th:text="${l.employee.getName() + ' ' + l.employee.getLastname()}"></td>
+                <td th:text="${l.dateTime.toString()}"></td>
+                <td><a th:href="@{/testdrive/delete/{id}(id=${l.id})}">Отменить запись</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>
